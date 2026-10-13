@@ -18,6 +18,6 @@ describe("privacy page waitlist retention", () => {
       "Pre-launch waitlist emails: kept until you ask us to delete them; contact us any time to be removed.",
     );
     expect(text).not.toContain("kept until launch");
-    expect(text).toContain("2 October 2026");
+    expect(text).toContain("13 October 2026");
   });
 });
