@@ -49,7 +49,7 @@ const sectionStyle: React.CSSProperties = {
 
 export default function PrivacyPage() {
   return (
-    <LegalShell title="Privacy Policy" updated="2 October 2026">
+    <LegalShell title="Privacy Policy" updated="13 October 2026">
       <section style={sectionStyle}>
         <h2 style={headingStyle}>1. Introduction</h2>
         <p style={bodyStyle}>
@@ -76,6 +76,13 @@ export default function PrivacyPage() {
             with Apple or Google shares your name and email address with us so we
             can create your account; it does not give us access to anything else
             in your Apple or Google account.
+          </li>
+          <li>
+            <span style={strongStyle}>Date of birth:</span>{" "}
+            Your month and year of birth, collected at sign-up to confirm you are
+            old enough to use Crumbify and to set private defaults for under 18s.
+            Only you can see it; it is never shown on your profile or shared with
+            other users or advertisers.
           </li>
           <li>
             <span style={strongStyle}>Restaurants you add:</span>{" "}
@@ -304,6 +311,9 @@ export default function PrivacyPage() {
         <p style={{ ...bodyStyle, marginBottom: 8 }}>Crumbify includes social features with the following visibility controls:</p>
         <ul style={listStyle}>
           <li>You can set your profile to private, hiding your posts and reviews from non-friends.</li>
+          <li>If you are under 18, your profile starts as private. You can make it public in your privacy settings, and the app asks you to confirm first.</li>
+          <li>If you are under 18, you do not appear in &quot;People who eat like you&quot; suggestions or contact matches for people who are not already your friends.</li>
+          <li>You can choose who can comment on your posts: everyone or friends only. For under 18s the default is friends only.</li>
           <li>Friend requests require mutual acceptance.</li>
           <li>You can block or report any user. Blocked users cannot see your profile or send requests.</li>
           <li>Group membership and shared group content are visible to other group members only.</li>
@@ -366,8 +376,9 @@ export default function PrivacyPage() {
           full-screen ad in the collections story viewer. We show the Google
           consent (UMP) prompt and, on iOS, the App Tracking Transparency
           prompt; ads are non-personalised unless you give both consents, and
-          you can decline and still use the App. Crumbify Premium removes all
-          Google ads.
+          you can decline and still use the App. If you are under 18, or we do
+          not yet know your age, ads are always non-personalised. Crumbify
+          Premium removes all Google ads.
         </p>
         <p style={bodyStyle}>
           Separately, clearly labelled &quot;Sponsored&quot; restaurant cards may appear
@@ -437,6 +448,7 @@ export default function PrivacyPage() {
         <h2 style={headingStyle}>14. Data Retention</h2>
         <ul style={listStyle}>
           <li>Account data is retained until you delete your account.</li>
+          <li>Date of birth: kept for as long as your account exists, deleted with your account.</li>
           <li>Import history (the shared link, the resolved place, and the status): while your account exists.</li>
           <li>Contact hashes sent during the find-friends check: not stored; only a record that a check happened (your account and the time) is kept, to limit how often it can run. A one-way hash of your own sign-up email is kept while your account exists so other people can find you.</li>
           <li>Push notification token: while notifications are enabled, removed when you turn them off.</li>
@@ -463,10 +475,15 @@ export default function PrivacyPage() {
       <section style={sectionStyle}>
         <h2 style={headingStyle}>15. Children&apos;s Privacy</h2>
         <p style={bodyStyle}>
-          Crumbify is not intended for children under 16. We do not knowingly
-          collect personal information from children under 16. If we discover
-          that a child under 16 has provided us with personal information, we
-          will delete it.
+          Crumbify is for people aged 13 and over. We do not knowingly collect
+          personal information from children under 13. If someone enters a
+          birth date that shows they are under 13, the App stops sign-up and
+          does not create an account. If we learn that someone under 13 has
+          created an account, we will delete the account and its data. Accounts
+          for people aged 13 to 17 start as private, and we only use their date
+          of birth to check age and set these defaults. If you are a parent or
+          guardian and think your child under 13 has an account, contact us at
+          support@crumbify.co.uk.
         </p>
       </section>
 
