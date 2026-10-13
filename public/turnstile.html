@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Crumbify verification</title>
+<style>html,body{margin:0;padding:0;background:transparent}</style>
+</head>
+<body>
+<!--
+  Cloudflare Turnstile token page for the Crumbify mobile app (app issue #1004).
+  The app loads this page in a hidden WebView: Turnstile only runs on hostnames registered in
+  Cloudflare, so the widget cannot be rendered from inline HTML inside the app.
+  Query: ?sitekey=<Turnstile site key>. Messages posted to window.ReactNativeWebView, as JSON:
+    {"type":"token","token":"..."}  a fresh single-use token
+    {"type":"error"}                the widget failed (or the site key is missing or malformed)
+    {"type":"expired"}              the token expired before the app used it
+    {"type":"timeout"}              an interactive challenge timed out
+  Nothing else is loaded: Turnstile is the only third-party script.
+-->
+<div id="widget"></div>
+<script>
+(function () {
+  function post(message) {
+    if (window.ReactNativeWebView && typeof window.ReactNativeWebView.postMessage === "function") {
+      window.ReactNativeWebView.postMessage(JSON.stringify(message));
+    }
+  }
+  var siteKey = new URLSearchParams(window.location.search).get("sitekey") || "";
+  var valid = /^[0-9A-Za-z_-]{8,64}$/.test(siteKey);
+  window.onTurnstileLoad = function () {
+    if (!valid || !window.turnstile) {
+      post({ type: "error" });
+      return;
+    }
+    window.turnstile.render("#widget", {
+      sitekey: siteKey,
+      appearance: "interaction-only",
+      retry: "auto",
+      callback: function (token) { post({ type: "token", token: token }); },
+      "error-callback": function () { post({ type: "error" }); },
+      "expired-callback": function () { post({ type: "expired" }); },
+      "timeout-callback": function () { post({ type: "timeout" }); }
+    });
+  };
+  if (!valid) post({ type: "error" });
+})();
+</script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&amp;onload=onTurnstileLoad" async defer></script>
+</body>
+</html>
