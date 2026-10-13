@@ -99,7 +99,7 @@ export default function TermsPage() {
       <section style={sectionStyle}>
         <h2 style={headingStyle}>5. Accounts for Under 18s</h2>
         <p style={bodyStyle}>
-          If your date of birth shows you are under 18, your account starts as private: only friends you accept can see your posts and reviews. You can change this in your privacy settings. If you make your account public, it works the same way as any other public account. You can still block or report anyone at any time.
+          If your date of birth shows you are under 18, your account starts as private: only friends you accept can see your posts and reviews. You can change this in your privacy settings. If you make your account public, anyone can see your posts and reviews, but you still do not appear in friend suggestions for people who are not your friends, and ads stay non-personalised. You can still block or report anyone at any time.
         </p>
       </section>
 
