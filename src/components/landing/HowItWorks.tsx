@@ -36,7 +36,7 @@ const STEPS = [
   {
     idx: "04",
     title: "Save it",
-    body: "Anything that looks good goes on your Want to Try list.",
+    body: "Anything that looks good goes on your Saved list.",
     icon: (
       <svg viewBox="0 0 24 24">
         <path d="M7 4h10a1 1 0 0 1 1 1v15l-6-4-6 4V5a1 1 0 0 1 1-1z" />
