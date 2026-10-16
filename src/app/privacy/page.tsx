@@ -205,7 +205,7 @@ export default function PrivacyPage() {
         <ul style={listStyle}>
           <li>Run the Home feed: showing friends&apos; posts, reactions, comments, and leaderboards, plus the public Trending tab for posts you choose to share there.</li>
           <li>Power Discover: the map, nearby places, and taste-matched recommendations.</li>
-          <li>Maintain your Reviews history: visited places, Saved lists, scores, and private notes.</li>
+          <li>Maintain your Reviews history: your Visited and Saved lists, scores, and private notes.</li>
           <li>Enable Social features: friends, groups, shared lists, and shared photos.</li>
           <li>Run your Profile wall: posts, achievements, and tiers, and the monthly Challenge.</li>
           <li>Moderate uploaded content (avatars, post photos) for safety.</li>
