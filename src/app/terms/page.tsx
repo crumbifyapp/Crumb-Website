@@ -78,7 +78,7 @@ export default function TermsPage() {
           pasting in a Google Maps list link, or searching manually, then post about
           them, rate and note them, and save ones you want to try. Crumbify uses this
           to power a Home feed, an optional public Trending tab, a Discover map,
-          reviews, want-to-try lists, groups, friends, profile collections, a profile
+          reviews, Saved lists, groups, friends, profile collections, a profile
           wall with achievements, and a monthly Challenge. Crumbify does not connect
           to delivery-platform accounts via their APIs, and it does not read order
           history from screenshots.
