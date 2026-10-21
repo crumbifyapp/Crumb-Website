@@ -299,7 +299,7 @@ describe("FoundingSection", () => {
     expect(screen.queryByRole("button", { name: /Become a founding member/i })).not.toBeInTheDocument();
   });
 
-  it("no longer lists the early-access-before-launch perk", async () => {
+  it("lists lifetime Premium as the perk and no early-access or as-long-as-you-stay copy", async () => {
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
       json: () => Promise.resolve({ count: 42, remaining: 58, closed: false }),
@@ -310,7 +310,10 @@ describe("FoundingSection", () => {
     await waitFor(() => {
       expect(screen.getByText("42 / 100")).toBeInTheDocument();
     });
-    expect(screen.queryByText(/Early access before public launch/i)).not.toBeInTheDocument();
     expect(screen.getByText("Founding member badge in the app")).toBeInTheDocument();
+    expect(screen.getByText("Lifetime Premium, every current and future perk")).toBeInTheDocument();
+    expect(screen.queryByText(/Early access before public launch/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/as long as you stay/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Locked-in premium perks/i)).not.toBeInTheDocument();
   });
 });
