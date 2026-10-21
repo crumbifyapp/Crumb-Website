@@ -66,7 +66,7 @@ describe("FoundingSection", () => {
     const button = screen.getByRole("button", { name: /Become a founding member/i });
     expect(button).toBeInTheDocument();
     fireEvent.click(button);
-    expect(openSpy).toHaveBeenCalledWith("/founding-member", "_self");
+    expect(openSpy).toHaveBeenCalledWith("/#founding", "_self");
   });
 
   it("treats a missing count as failure, retries three times, then shows unavailable", async () => {

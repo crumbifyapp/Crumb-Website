@@ -69,7 +69,7 @@ The landing is a 1:1 Next.js port of the approved design in `C:\Users\aliba\Down
 
 ## Known follow-ups
 
-- Wire `NEXT_PUBLIC_STRIPE_FOUNDING_MEMBER_LINK` env in Vercel for the founding-member checkout button (falls back to `/founding-member` if unset).
+- Wire `NEXT_PUBLIC_STRIPE_FOUNDING_MEMBER_LINK` env in Vercel for the founding-member checkout button (falls back to `/#founding` if unset).
 - Wire `NEXT_PUBLIC_APP_STORE_URL` + `NEXT_PUBLIC_PLAY_STORE_URL` in Vercel once the store listings exist (store badges fall back to `#`, referral redirect to `/`).
 - OG share image (1200x630) + favicon set still to be produced (see SITE_HANDOFF/05-ASSETS-SEO.md).
 - Self-host fonts as woff2 if Lighthouse flags the Google Fonts request.

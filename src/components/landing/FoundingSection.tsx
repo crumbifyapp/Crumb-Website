@@ -4,7 +4,7 @@
  * FoundingSection - Founding member offer, redesigned in the handoff cream language.
  * Placed between Groups and CTA.
  * Fetches /api/waitlist/founding for live spot count.
- * Stripe link: NEXT_PUBLIC_STRIPE_FOUNDING_MEMBER_LINK (fallback: /founding-member).
+ * Stripe link: NEXT_PUBLIC_STRIPE_FOUNDING_MEMBER_LINK (fallback: /#founding).
  */
 
 import { useEffect, useState } from "react";
@@ -131,7 +131,7 @@ export function FoundingSection() {
                   className="btn"
                   style={{ width: "100%" }}
                   onClick={() => {
-                    const href = stripeLink || "/founding-member";
+                    const href = stripeLink || "/#founding";
                     window.open(href, stripeLink ? "_blank" : "_self");
                   }}
                 >
