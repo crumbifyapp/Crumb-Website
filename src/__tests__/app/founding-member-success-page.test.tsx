@@ -32,7 +32,7 @@ describe("founding member success page copy", () => {
       "Next step: download Crumbify from the App Store and sign up with the same email address you paid with.",
     );
     expect(text).toContain(
-      "Signing up with a different email, such as Apple's Hide My Email, will not unlock it automatically. If that happens, you can restore it in Settings by verifying the email you paid with.",
+      "Signing up with a different email will not unlock it. If you used Apple's Hide My Email, you can restore it in Settings by verifying the email you paid with.",
     );
   });
 
