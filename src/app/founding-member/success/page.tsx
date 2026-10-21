@@ -21,7 +21,8 @@ export default function FoundingMemberSuccess() {
         <p className="text-crumb-cream text-base mb-6">
           Next step: download Crumbify from the App Store and sign up with the same email
           address you paid with. That unlocks your founding membership. Signing up with a
-          different email, such as Apple&apos;s Hide My Email, will not unlock it.
+          different email, such as Apple&apos;s Hide My Email, will not unlock it automatically.
+          If that happens, you can restore it in Settings by verifying the email you paid with.
         </p>
         <div className="flex justify-center mb-8">
           <StoreBadge
