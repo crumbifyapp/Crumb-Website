@@ -49,7 +49,7 @@ const sectionStyle: React.CSSProperties = {
 
 export default function TermsPage() {
   return (
-    <LegalShell title="Terms of Service" updated="13 October 2026">
+    <LegalShell title="Terms of Service" updated="21 October 2026">
       <section style={sectionStyle}>
         <h2 style={headingStyle}>1. Acceptance of Terms</h2>
         <p style={bodyStyle}>
@@ -150,7 +150,7 @@ export default function TermsPage() {
           <li>Founding Members pay once and never pay again - no subscription, no recurring fees.</li>
           <li>The offer closes permanently once 100 places have been claimed.</li>
           <li>Founding Members receive an exclusive profile badge and all current and future Premium features at no additional cost.</li>
-          <li>Founding Member status is keyed to the email used at purchase and can be restored by verifying that email in the App.</li>
+          <li>Founding Member status is keyed to the email used at purchase. It unlocks automatically when you sign up in the App with that email. If you signed up with Apple&apos;s Hide My Email, you can restore it by verifying your purchase email in the App&apos;s Settings; otherwise, contact support.</li>
           <li>Founding Member status is non-transferable and tied to your Crumbify account.</li>
           <li>Founding Member access is digital content supplied immediately. By completing checkout you request immediate supply and acknowledge that you lose the 14-day cancellation right under the Consumer Contracts Regulations 2013 once access is granted; before access is granted you can cancel for a full refund by emailing support@crumbify.co.uk.</li>
           <li>Lifetime access lasts for as long as Crumbify operates the service. If we ever discontinue Crumbify we will give reasonable notice; individual Premium features may change or be replaced over time.</li>

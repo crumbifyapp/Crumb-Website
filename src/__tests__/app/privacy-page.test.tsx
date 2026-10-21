@@ -18,6 +18,16 @@ describe("privacy page waitlist retention", () => {
       "Pre-launch waitlist emails: kept until you ask us to delete them; contact us any time to be removed.",
     );
     expect(text).not.toContain("kept until launch");
-    expect(text).toContain("13 October 2026");
+    expect(text).toContain("21 October 2026");
+    expect(text).not.toContain("13 October 2026");
+  });
+
+  it("renders the founding-member email retention line that matches the restore rule", () => {
+    const { container } = render(<PrivacyPage />);
+    const text = container.textContent ?? "";
+    expect(text).toContain(
+      "Founding-member emails: retained while the founding benefit exists, so the tier can unlock when you sign up with that email, or be restored by verifying it if you signed up with Apple's Hide My Email.",
+    );
+    expect(text).not.toContain("so the tier can be restored by verifying that email");
   });
 });
