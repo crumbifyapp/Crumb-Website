@@ -91,7 +91,7 @@ interface StoreBadgeProps {
   readonly ariaLabel: string;
 }
 
-function StoreBadge({ href, iconSvg, smallLabel, bigLabel, ariaLabel }: StoreBadgeProps) {
+export function StoreBadge({ href, iconSvg, smallLabel, bigLabel, ariaLabel }: StoreBadgeProps) {
   const className =
     "inline-flex items-center gap-[11px] rounded-[13px] bg-black py-[9px] pr-[18px] pl-[15px] !text-white no-underline shadow-[0_8px_26px_rgba(0,0,0,0.16)] max-[560px]:flex-[1_1_auto] max-[560px]:min-w-0 max-[560px]:justify-center";
   const affordance =
