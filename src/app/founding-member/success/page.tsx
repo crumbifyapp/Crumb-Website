@@ -7,11 +7,10 @@ export default function FoundingMemberSuccess() {
           Welcome, Founding Member!
         </h1>
         <p className="text-crumb-muted text-lg mb-8">
-          You&apos;re locked in. When Crumb launches, you&apos;ll get first-day access
-          and lifetime premium - no subscription needed, ever.
+          You&apos;re a founding member. You get lifetime Premium, no subscription needed, ever.
         </p>
         <p className="text-crumb-muted text-sm mb-8">
-          We&apos;ll email you the moment it&apos;s ready.
+          Crumbify is live on the App Store.
         </p>
         <a
           href="https://crumbify.co.uk"

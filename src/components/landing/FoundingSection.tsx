@@ -28,7 +28,7 @@ function isFoundingData(value: unknown): value is FoundingData {
 
 const PERKS = [
   "Founding member badge in the app",
-  "Locked-in premium perks, kept as long as you stay",
+  "Lifetime Premium, every current and future perk",
 ];
 
 export function FoundingSection() {
