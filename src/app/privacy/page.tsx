@@ -91,7 +91,7 @@ export default function PrivacyPage() {
             When you share a TikTok or Instagram post into Crumbify, paste in a
             Google Maps list link, or search and add a place manually, we resolve
             the shared link to a restaurant and store that restaurant, your
-            been-to and want-to-try status, and any score or note you attach. For a
+            Visited and Saved status, and any score or note you attach. For a
             TikTok share, we read the caption via TikTok&apos;s public oEmbed
             service, and TikTok photo posts may be fetched from TikTok&apos;s embed
             pages; if a caption does not identify a place, the post&apos;s images
@@ -205,7 +205,7 @@ export default function PrivacyPage() {
         <ul style={listStyle}>
           <li>Run the Home feed: showing friends&apos; posts, reactions, comments, and leaderboards, plus the public Trending tab for posts you choose to share there.</li>
           <li>Power Discover: the map, nearby places, and taste-matched recommendations.</li>
-          <li>Maintain your Reviews history: been-to places, want-to-try lists, scores, and private notes.</li>
+          <li>Maintain your Reviews history: your Visited and Saved lists, scores, and private notes.</li>
           <li>Enable Social features: friends, groups, shared lists, and shared photos.</li>
           <li>Run your Profile wall: posts, achievements, and tiers, and the monthly Challenge.</li>
           <li>Moderate uploaded content (avatars, post photos) for safety.</li>
@@ -312,7 +312,7 @@ export default function PrivacyPage() {
         <h2 style={headingStyle}>7. Social Features and Visibility</h2>
         <p style={{ ...bodyStyle, marginBottom: 8 }}>Crumbify includes social features with the following visibility controls:</p>
         <ul style={listStyle}>
-          <li>You can set your profile to private. A private profile still appears in search and on leaderboards, where anyone signed in can see your name, username, photo, bio, friend and Been-To counts and rank, and send you a friend request. Your posts, reviews, achievements, lists and map are visible only to friends you accept.</li>
+          <li>You can set your profile to private. A private profile still appears in search and on leaderboards, where anyone signed in can see your name, username, photo, bio, friend and Visited counts and rank, and send you a friend request. Your posts, reviews, achievements, lists and map are visible only to friends you accept.</li>
           <li>If you are under 18, your profile starts as private. You can make it public in your privacy settings, and the app asks you to confirm first.</li>
           <li>If you are under 18, you do not appear in &quot;People who eat like you&quot; suggestions or contact matches for people who are not already your friends.</li>
           <li>You can choose who can comment on your posts: everyone or friends only. For under 18s the default is friends only.</li>

@@ -94,7 +94,7 @@ export default function DeleteAccountPage() {
           <li>Your profile (name, username, email, avatar)</li>
           <li>Posts you created and their photos</li>
           <li>Restaurant reviews, scores, and private notes</li>
-          <li>Your been-to and want-to-try lists</li>
+          <li>Your Visited and Saved lists</li>
           <li>Comments and reactions you made on posts</li>
           <li>
             Your friends and group memberships, and content you shared within groups,

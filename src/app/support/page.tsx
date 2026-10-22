@@ -55,7 +55,7 @@ const faqs = [
   },
   {
     q: "How do I remove data I have added?",
-    a: "Everything in Crumbify comes from what you post or enter, so you stay in control. You can remove individual posts, reviews, or want-to-try entries in the app, or delete your whole account at any time (see our delete account page).",
+    a: "Everything in Crumbify comes from what you post or enter, so you stay in control. You can remove individual posts, reviews, or saved places in the app, or delete your whole account at any time (see our delete account page).",
   },
   {
     q: "What is included in Crumbify Premium?",
