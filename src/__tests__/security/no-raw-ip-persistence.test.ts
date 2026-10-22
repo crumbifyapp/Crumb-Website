@@ -60,7 +60,7 @@ describe("security: the referral routes never persist a raw client IP", () => {
   const source = readFileSync(ROUTE_PATH, "utf-8");
 
   it("writes ip_hash (never a bare ip: or user_agent: key) to referral_clicks", () => {
-    const persistCall = extractBalancedCall(source, ".from(\"referral_clicks\").upsert(");
+    const persistCall = extractBalancedCall(source, ".from(\"referral_clicks\").insert(");
 
     expect(persistCall).toMatch(/\bip_hash\s*:/);
 
@@ -98,7 +98,7 @@ describe("security: the referral routes never persist a raw client IP", () => {
   it("derives ip_hash from a hash function, not a plain assignment of the IP", () => {
     // Confirms the value written as ip_hash actually goes through hashing
     // (e.g. `hashIp(clientIp, salt)`) rather than being the raw IP renamed.
-    const persistCall = extractBalancedCall(source, ".from(\"referral_clicks\").upsert(");
+    const persistCall = extractBalancedCall(source, ".from(\"referral_clicks\").insert(");
     expect(persistCall).toMatch(/ip_hash\s*:\s*\w*[Hh]ash\w*/);
   });
 });
