@@ -67,6 +67,15 @@ describe("apple-app-site-association", () => {
     },
   );
 
+  // #1191: the in-app invite link is crumbify.co.uk/ref?u=<username>. An installed iOS app must
+  // open it as a universal link (and read `u` itself); only visitors without the app reach the
+  // website route that records the click. A component matches the PATH only, so `/ref*` covers
+  // `/ref?u=...`.
+  it("declares /ref* so an installed app opens invite links", () => {
+    const paths = doc.applinks.details[0].components.map((c) => c["/"]);
+    expect(paths).toContain("/ref*");
+  });
+
   it("every component ends in a wildcard (never a bare exact-path match that would miss the dynamic id segment)", () => {
     for (const component of doc.applinks.details[0].components) {
       expect(component["/"]).toMatch(/\*$/);

@@ -13,13 +13,12 @@
 import { readFileSync } from "fs";
 import path from "path";
 
-const ROUTE_PATH = path.resolve(
-  __dirname,
-  "..",
-  "..",
-  "app",
-  "referral",
-  "route.ts"
+// #1191: the click write moved out of the /referral route into the shared helper that BOTH
+// public referral routes (/referral?code= and /ref?u=) call, so this guard reads the helper and
+// then proves each route reaches the database only through it.
+const ROUTE_PATH = path.resolve(__dirname, "..", "..", "lib", "referral-click.ts");
+const ROUTES = ["referral", "ref"].map((dir) =>
+  path.resolve(__dirname, "..", "..", "app", dir, "route.ts")
 );
 
 function extractBalancedCall(source: string, calleeSuffix: string): string {
@@ -46,7 +45,18 @@ function extractBalancedCall(source: string, calleeSuffix: string): string {
   throw new Error(`Unbalanced parentheses scanning "${calleeSuffix}" in ${ROUTE_PATH}`);
 }
 
-describe("security: referral route never persists a raw client IP", () => {
+describe("security: the referral routes never persist a raw client IP", () => {
+  it.each(ROUTES)("%s reaches referral_clicks only through recordReferralClick", (routePath) => {
+    // Comments may explain the flow, so only code counts.
+    const routeSource = readFileSync(routePath, "utf-8")
+      .replace(/\/\*[\s\S]*?\*\//g, "")
+      .replace(/^\s*\/\/.*$/gm, "");
+    expect(routeSource).toMatch(/recordReferralClick\(\s*request,/);
+    expect(routeSource).not.toMatch(/referral_clicks/);
+    expect(routeSource).not.toMatch(/x-forwarded-for|x-real-ip/i);
+    expect(routeSource).not.toMatch(/console\./);
+  });
+
   const source = readFileSync(ROUTE_PATH, "utf-8");
 
   it("writes ip_hash (never a bare ip: or user_agent: key) to referral_clicks", () => {
