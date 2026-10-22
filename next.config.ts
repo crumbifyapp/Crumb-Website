@@ -59,11 +59,8 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   async redirects() {
     return [
-      {
-        source: "/ref",
-        destination: "/",
-        permanent: true,
-      },
+      // `/ref` is NOT redirected here any more: src/app/ref/route.ts records the click for
+      // `/ref?u=<username>` and then sends the visitor home (#1191).
       {
         source: "/invite",
         destination: "/",
