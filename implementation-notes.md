@@ -557,3 +557,12 @@ Lane: Claude sonnet writer, opus reviewer.
 - ACCEPTED-DEVIATION 3 (from round 1): supaDataErr, error.error_description, error.body and an IIFE returning the error stay green (flagging them would false-alarm on correct code).
 - Not filed: `console.error(x, err.errors)` is green because only specific property names are flagged (existing design).
 - Review rounds: 4 of 5. Lane: Claude sonnet writer, Claude opus reviewer.
+
+## #1213 fix/1213-assetlinks-eas-fingerprint (2026-10-23, lane: haiku writer, sonnet reviewer)
+
+- Decisions: `public/.well-known/assetlinks.json` lists the EAS Android upload keystore fingerprint of `com.crumbify.app` (`FC:DF:19:...:F1`, 32 bytes, read from EAS credentials by the orchestrator). The Play App Signing key goes in later as a second entry; no value is invented. `relation` and `package_name` are unchanged.
+- Decisions (content type): `next.config.ts` already sets `Content-Type: application/json` for `/.well-known/assetlinks.json` (with a `Cache-Control` of one hour). No change was made.
+- Decisions (guard): `src/__tests__/well-known/assetlinks-json-shape.test.ts` runs a pure validator over the real file. It returns one distinct message each for: not JSON, not a non-empty statement array, wrong `package_name`, `relation` without `delegate_permission/common.handle_all_urls`, empty fingerprint list, and any fingerprint that is not 32 uppercase hex bytes with colons. RED fixtures: the exact pre-fix placeholder file, plus unparseable JSON, empty array, non-object statement, wrong package, wrong relation, empty list, lowercase, 31 bytes, no colons, non-string entry. GREEN fixture: a valid file with a second fingerprint.
+- Deviations: none. The pre-existing lint errors (`__mocks__/framer-motion.js`, `src/components/legal/BackLink.tsx`) are outside this branch and were not touched.
+- Open: store installs are signed with the Play App Signing key, so App Links verify for Play installs only after the second entry lands (owner action, recorded in `public/.well-known/README.md`).
+- What recurring class did this work expose, and what automation now guards it? Placeholder config shipped to production (a literal `REPLACE_...` value passed every gate and failed silently at runtime). Guarded by the shape guard, which reads the real file and goes red on the placeholder, an empty list, a malformed fingerprint, or a wrong package or relation.
