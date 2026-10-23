@@ -6,17 +6,15 @@ documented shape, no extra sibling keys, no comments embedded in the JSON.
 
 ## assetlinks.json (Android App Links)
 
-**OWNER ACTION (pixel-fix F-53R6, not fixable by an agent):** Play Console >
-[app] > Setup > App integrity > App signing > App signing key certificate >
-"SHA-256 certificate fingerprint". Paste that colon-separated hex value into
-`sha256_cert_fingerprints` in `assetlinks.json` (or run
-`keytool -list -v -keystore <release.keystore>` against the real
-release-signing keystore and copy its SHA256 line).
+`sha256_cert_fingerprints` holds the EAS Android signing (upload) keystore fingerprint of
+`com.crumbify.app` (app#1213). The guard `src/__tests__/well-known/assetlinks-json-shape.test.ts`
+fails on any placeholder, empty list, or malformed fingerprint.
 
-Until the `REPLACE_WITH_SHA256_FROM_PLAY_CONSOLE` placeholder is replaced,
-Android App Links verification for BOTH `/invite` and `/u` silently fails -
-not a crash, just a fallback to an app-picker chooser instead of a direct
-open.
+**OWNER ACTION (open):** add the Play App Signing key certificate as a SECOND entry in
+`sha256_cert_fingerprints`. Play Console > [app] > Setup > App integrity > App signing >
+App signing key certificate > "SHA-256 certificate fingerprint". Store installs are signed
+with the Play App Signing key, so App Links verify for Play installs only after that entry
+lands. Do not invent a value.
 
 (Fix-round r2, F53-N5: this note previously lived as a non-spec `comment`
 key inside the JSON statement object itself - moved here so the file stays
