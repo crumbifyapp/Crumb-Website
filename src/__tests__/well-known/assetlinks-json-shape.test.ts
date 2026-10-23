@@ -21,13 +21,19 @@ const HANDLE_ALL_URLS = "delegate_permission/common.handle_all_urls";
 // as a second entry; this test only requires that this one stays listed.
 const EAS_UPLOAD_FINGERPRINT =
   "FC:DF:19:36:68:B0:8E:81:7C:F0:B9:1D:7E:9B:02:27:EB:0F:DF:72:9A:E5:03:2D:06:36:69:A4:F9:CC:9A:F1";
+// A well-formed second fingerprint (32 bytes) used by the GREEN fixtures.
+const PLAY_KEY =
+  "0A:1B:2C:3D:4E:5F:60:71:82:93:A4:B5:C6:D7:E8:F9:0A:1B:2C:3D:4E:5F:60:71:82:93:A4:B5:C6:D7:E8:F9";
 // 32 bytes, uppercase hex, colon separated: 32 pairs, 31 colons.
 const FINGERPRINT_RE = /^(?:[0-9A-F]{2}:){31}[0-9A-F]{2}$/;
 
 const MSG = {
   notJson: "assetlinks.json does not parse as JSON",
   notStatementArray: "assetlinks.json must be a non-empty array of statement objects",
-  wrongPackage: "assetlinks.json target.package_name must be com.crumbify.app",
+  noAppStatement:
+    "assetlinks.json must contain at least one statement whose target.package_name is com.crumbify.app",
+  missingPackageName:
+    "assetlinks.json every statement needs a non-empty string target.package_name",
   missingHandleAllUrls:
     "assetlinks.json relation must include delegate_permission/common.handle_all_urls",
   noFingerprints: "assetlinks.json sha256_cert_fingerprints must list at least one certificate",
@@ -55,11 +61,19 @@ function assetLinksFailures(raw: string): string[] {
   }
 
   const failures = new Set<string>();
+  let targetsThisApp = false;
   for (const statement of doc as Record<string, unknown>[]) {
     const relation = Array.isArray(statement.relation) ? statement.relation : [];
     const target = isRecord(statement.target) ? statement.target : {};
 
-    if (target.package_name !== PACKAGE_NAME) failures.add(MSG.wrongPackage);
+    // Several packages may share the domain (uk.co.crumbify.app is coming, D197), so the
+    // package list is not allow-listed here: every statement needs a real package name, and at
+    // least one of them must be this app.
+    if (typeof target.package_name !== "string" || target.package_name === "") {
+      failures.add(MSG.missingPackageName);
+    } else if (target.package_name === PACKAGE_NAME) {
+      targetsThisApp = true;
+    }
     if (!relation.includes(HANDLE_ALL_URLS)) failures.add(MSG.missingHandleAllUrls);
 
     const fingerprints = target.sha256_cert_fingerprints;
@@ -73,24 +87,34 @@ function assetLinksFailures(raw: string): string[] {
       }
     }
   }
+  if (!targetsThisApp) failures.add(MSG.noAppStatement);
   return [...failures];
 }
 
-/** A statement that passes every check, with optional overrides for RED fixtures. */
+/** One statement object; the inputs are unvalidated so RED fixtures can pass bad values. */
+function statementOf(
+  packageName: unknown,
+  fingerprints: unknown = [EAS_UPLOAD_FINGERPRINT],
+  relation: unknown = [HANDLE_ALL_URLS],
+): Record<string, unknown> {
+  return {
+    relation,
+    target: {
+      namespace: "android_app",
+      package_name: packageName,
+      sha256_cert_fingerprints: fingerprints,
+    },
+  };
+}
+
+/** A single statement file that passes every check, with optional target overrides for RED fixtures. */
 function statementFile(
   targetOverrides: Record<string, unknown> = {},
   relation: readonly string[] = [HANDLE_ALL_URLS],
 ): string {
+  const base = statementOf(PACKAGE_NAME) as { target: Record<string, unknown> };
   return JSON.stringify([
-    {
-      relation: [...relation],
-      target: {
-        namespace: "android_app",
-        package_name: PACKAGE_NAME,
-        sha256_cert_fingerprints: [EAS_UPLOAD_FINGERPRINT],
-        ...targetOverrides,
-      },
-    },
+    { relation: [...relation], target: { ...base.target, ...targetOverrides } },
   ]);
 }
 
@@ -120,9 +144,15 @@ describe("assetlinks.json (live file)", () => {
     expect(assetLinksFailures(raw)).toEqual([]);
   });
 
-  it("keeps the EAS upload fingerprint listed (Play App Signing key is added as a second entry later)", () => {
-    const doc = JSON.parse(raw) as Array<{ target: { sha256_cert_fingerprints: string[] } }>;
-    expect(doc[0].target.sha256_cert_fingerprints).toContain(EAS_UPLOAD_FINGERPRINT);
+  it("some statement whose package_name is com.crumbify.app lists the EAS upload fingerprint FC:DF:...:F1", () => {
+    const doc = JSON.parse(raw) as Array<{
+      target: { package_name: string; sha256_cert_fingerprints: string[] };
+    }>;
+    const appStatements = doc.filter((s) => s.target.package_name === PACKAGE_NAME);
+    expect(appStatements.length).toBeGreaterThan(0);
+    expect(
+      appStatements.some((s) => s.target.sha256_cert_fingerprints.includes(EAS_UPLOAD_FINGERPRINT)),
+    ).toBe(true);
   });
 
   it("the placeholder literal is gone from the shipped file", () => {
@@ -147,10 +177,59 @@ describe("assetLinksFailures RED fixtures (each failure class fires with its own
     expect(assetLinksFailures('["not-a-statement"]')).toEqual([MSG.notStatementArray]);
   });
 
-  it("a different package_name fails as wrongPackage", () => {
+  it("no statement targeting com.crumbify.app fails as noAppStatement", () => {
     expect(assetLinksFailures(statementFile({ package_name: "com.example.other" }))).toEqual([
-      MSG.wrongPackage,
+      MSG.noAppStatement,
     ]);
+  });
+
+  it("a second statement with no com.crumbify.app statement anywhere fails as noAppStatement", () => {
+    expect(
+      assetLinksFailures(
+        JSON.stringify([
+          statementOf("uk.co.crumbify.app", [PLAY_KEY]),
+          statementOf("com.example.other"),
+        ]),
+      ),
+    ).toEqual([MSG.noAppStatement]);
+  });
+
+  it("an empty package_name on a second statement fails as missingPackageName", () => {
+    expect(
+      assetLinksFailures(
+        JSON.stringify([statementOf(PACKAGE_NAME), statementOf("", [PLAY_KEY])]),
+      ),
+    ).toEqual([MSG.missingPackageName]);
+  });
+
+  it("a non-string package_name on a second statement fails as missingPackageName", () => {
+    expect(
+      assetLinksFailures(
+        JSON.stringify([statementOf(PACKAGE_NAME), statementOf(7, [PLAY_KEY])]),
+      ),
+    ).toEqual([MSG.missingPackageName]);
+  });
+
+  it("a second statement with a bad fingerprint still fails (every statement is validated)", () => {
+    expect(
+      assetLinksFailures(
+        JSON.stringify([
+          statementOf(PACKAGE_NAME),
+          statementOf("uk.co.crumbify.app", ["not-a-fingerprint"]),
+        ]),
+      ),
+    ).toEqual([MSG.badFingerprint]);
+  });
+
+  it("a second statement without handle_all_urls still fails (relation checked on every statement)", () => {
+    expect(
+      assetLinksFailures(
+        JSON.stringify([
+          statementOf(PACKAGE_NAME),
+          statementOf("uk.co.crumbify.app", [PLAY_KEY], ["delegate_permission/common.get_login_creds"]),
+        ]),
+      ),
+    ).toEqual([MSG.missingHandleAllUrls]);
   });
 
   it("a relation without handle_all_urls fails as missingHandleAllUrls", () => {
@@ -194,11 +273,20 @@ describe("assetLinksFailures RED fixtures (each failure class fires with its own
 
 describe("assetLinksFailures GREEN fixture and message set", () => {
   it("a valid file with a second (Play App Signing) fingerprint passes", () => {
-    const playKey =
-      "0A:1B:2C:3D:4E:5F:60:71:82:93:A4:B5:C6:D7:E8:F9:0A:1B:2C:3D:4E:5F:60:71:82:93:A4:B5:C6:D7:E8:F9";
     expect(
       assetLinksFailures(
-        statementFile({ sha256_cert_fingerprints: [EAS_UPLOAD_FINGERPRINT, playKey] }),
+        statementFile({ sha256_cert_fingerprints: [EAS_UPLOAD_FINGERPRINT, PLAY_KEY] }),
+      ),
+    ).toEqual([]);
+  });
+
+  it("a valid second statement for uk.co.crumbify.app alongside com.crumbify.app passes", () => {
+    expect(
+      assetLinksFailures(
+        JSON.stringify([
+          statementOf(PACKAGE_NAME),
+          statementOf("uk.co.crumbify.app", [PLAY_KEY]),
+        ]),
       ),
     ).toEqual([]);
   });
