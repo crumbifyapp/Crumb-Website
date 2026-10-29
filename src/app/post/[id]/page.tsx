@@ -24,7 +24,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { AppShareLanding } from "@/components/share-landing/AppShareLanding";
-import { pageMetadata } from "@/lib/seo";
+import { APP_STORE_ID, pageMetadata, SITE_URL } from "@/lib/seo";
 
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
@@ -45,6 +45,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: "Every bite tells a story. See this post on Crumbify.",
     }),
     robots: { index: false, follow: true },
+    // Smart App Banner opens the shared item in the app, not the app home.
+    itunes: {
+      appId: APP_STORE_ID,
+      appArgument: `${SITE_URL}/post/${encodeURIComponent(id)}`,
+    },
   };
 }
 

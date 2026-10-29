@@ -106,6 +106,16 @@ describe("generateMetadata username validation (F53-R4)", () => {
     expect(metadata.openGraph).toMatchObject({ url });
   });
 
+  it("sets the smart app banner app-argument to the canonical profile URL", async () => {
+    const metadata = await generateMetadata({
+      params: Promise.resolve({ username: "alibars" }),
+    });
+    expect(metadata.itunes).toEqual({
+      appId: "6777163992",
+      appArgument: "https://crumbify.co.uk/u/alibars",
+    });
+  });
+
   it("is noindex but followable", async () => {
     const metadata = await generateMetadata({
       params: Promise.resolve({ username: "alibars" }),

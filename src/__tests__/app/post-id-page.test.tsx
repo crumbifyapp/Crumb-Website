@@ -60,6 +60,14 @@ describe("generateMetadata id validation", () => {
     expect(metadata.openGraph).toMatchObject({ url });
   });
 
+  it("sets the smart app banner app-argument to the canonical share URL", async () => {
+    const metadata = await generateMetadata({ params: Promise.resolve({ id: VALID_ID }) });
+    expect(metadata.itunes).toEqual({
+      appId: "6777163992",
+      appArgument: `https://crumbify.co.uk/post/${VALID_ID}`,
+    });
+  });
+
   it("is noindex but followable", async () => {
     const metadata = await generateMetadata({ params: Promise.resolve({ id: VALID_ID }) });
     expect(metadata.robots).toEqual({ index: false, follow: true });

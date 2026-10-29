@@ -22,7 +22,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProfileShareLanding } from "@/components/profile-share/ProfileShareLanding";
-import { pageMetadata } from "@/lib/seo";
+import { APP_STORE_ID, pageMetadata, SITE_URL } from "@/lib/seo";
 
 // Mirrors the app repo's real username SHAPES so this page does not reject
 // a link that the app itself would happily resolve (fix-round r1, F53-R4):
@@ -62,6 +62,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: "Every bite tells a story. See this profile on Crumbify.",
     }),
     robots: { index: false, follow: true },
+    // Smart App Banner opens the shared profile in the app, not the app home.
+    itunes: {
+      appId: APP_STORE_ID,
+      appArgument: `${SITE_URL}/u/${encodeURIComponent(username)}`,
+    },
   };
 }
 

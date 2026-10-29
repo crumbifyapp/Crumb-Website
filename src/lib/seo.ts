@@ -12,6 +12,9 @@ import type { Metadata } from "next";
 
 export const SITE_URL = "https://crumbify.co.uk";
 
+// App Store id of the Crumbify iOS app, used by the Smart App Banner.
+export const APP_STORE_ID = "6777163992";
+
 // The real pixel size of public/images/og-image.png.
 export const OG_IMAGE = {
   url: "/images/og-image.png",
@@ -69,5 +72,5 @@ export const rootMetadata: Metadata = {
     "food map",
   ],
   // Renders <meta name="apple-itunes-app" content="app-id=6777163992">.
-  itunes: { appId: "6777163992" },
+  itunes: { appId: APP_STORE_ID },
 };

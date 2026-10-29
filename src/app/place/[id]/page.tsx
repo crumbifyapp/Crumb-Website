@@ -26,7 +26,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { AppShareLanding } from "@/components/share-landing/AppShareLanding";
-import { pageMetadata } from "@/lib/seo";
+import { APP_STORE_ID, pageMetadata, SITE_URL } from "@/lib/seo";
 
 // Mirrors the app repo's services/deeplinks/parse-place-id.ts's
 // PLACE_ID_PATTERN exactly (Google Places place_id values are
@@ -50,6 +50,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: "Every bite tells a story. See this place on Crumbify.",
     }),
     robots: { index: false, follow: true },
+    // Smart App Banner opens the shared item in the app, not the app home.
+    itunes: {
+      appId: APP_STORE_ID,
+      appArgument: `${SITE_URL}/place/${encodeURIComponent(id)}`,
+    },
   };
 }
 
