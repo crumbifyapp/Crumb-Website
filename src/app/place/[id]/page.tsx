@@ -24,7 +24,9 @@
  */
 
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { AppShareLanding } from "@/components/share-landing/AppShareLanding";
+import { pageMetadata } from "@/lib/seo";
 
 // Mirrors the app repo's services/deeplinks/parse-place-id.ts's
 // PLACE_ID_PATTERN exactly (Google Places place_id values are
@@ -37,27 +39,24 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const title = PLACE_ID_PATTERN.test(id) ? "A place on Crumbify" : "Crumbify place";
+  if (!PLACE_ID_PATTERN.test(id)) notFound();
+  // noindex: every id shows the same generic copy, so these are share links
+  // only. follow stays true and robots.txt allows the crawl, so bots can see
+  // the noindex.
   return {
-    title,
-    description: "Every bite tells a story. See this place on Crumbify.",
-    alternates: { canonical: `https://crumbify.co.uk/place/${encodeURIComponent(id)}` },
+    ...pageMetadata({
+      path: `/place/${encodeURIComponent(id)}`,
+      title: "A place on Crumbify",
+      description: "Every bite tells a story. See this place on Crumbify.",
+    }),
+    robots: { index: false, follow: true },
   };
 }
 
 export default async function PlaceSharePage({ params }: PageProps) {
   const { id } = await params;
 
-  if (!PLACE_ID_PATTERN.test(id)) {
-    return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-[#F4ECE1] px-6 py-16 text-center text-[#1A1208]">
-        <h1 className="mb-4 text-2xl font-semibold">Place not found</h1>
-        <p className="max-w-sm text-base text-[#4a3f33]">
-          This Crumbify place link looks broken. Check the link and try again.
-        </p>
-      </div>
-    );
-  }
+  if (!PLACE_ID_PATTERN.test(id)) notFound();
 
   return (
     <AppShareLanding
