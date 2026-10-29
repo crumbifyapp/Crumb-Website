@@ -73,7 +73,7 @@ The landing is a 1:1 Next.js port of the approved design in `C:\Users\aliba\Down
 - Wire `NEXT_PUBLIC_APP_STORE_URL` + `NEXT_PUBLIC_PLAY_STORE_URL` in Vercel once the store listings exist (store badges fall back to `#`, referral redirect to `/`).
 - OG share image (1200x630) + favicon set still to be produced (see SITE_HANDOFF/05-ASSETS-SEO.md).
 - Self-host fonts as woff2 if Lighthouse flags the Google Fonts request.
-- Wrapped is intentionally NOT featured (not shipping for a long time).
+- Monthly Wrapped may be named factually as a Crumbify Premium perk (it is live in the app; landing FAQ, FAQPage JSON-LD, /support, llms.txt); do not build a Wrapped feature section. Owner decision D310, 29 Oct 2026 (replaces the old "Wrapped is intentionally NOT featured" rule).
 
 ## HARD design rules (from ~/.claude/rules frontend-design + app-wide)
 
