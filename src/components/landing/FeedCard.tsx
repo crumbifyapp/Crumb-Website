@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Post } from "./data";
 import { ScorePuck } from "./ScorePuck";
 
@@ -9,14 +10,20 @@ export function FeedCard({ post }: FeedCardProps) {
   return (
     <div className="fcard">
       <div className="top">
-        <img className="av" src={`/media/people/${post.person}`} alt="" />
+        <Image className="av" src={`/media/people/${post.person}`} alt="" width={38} height={38} />
         <div style={{ flex: 1 }}>
           <div className="n">{post.name}</div>
           <div className="t">posted a place</div>
         </div>
       </div>
       <div className="pic">
-        <img src={`/media/food/${post.food}`} alt={post.place} loading="lazy" />
+        <Image
+          src={`/media/food/${post.food}`}
+          alt={post.place}
+          width={900}
+          height={1199}
+          sizes="(max-width: 640px) min(82vw, 320px), 324px"
+        />
         <span className="tag">{post.place}</span>
       </div>
       <div className="body">
