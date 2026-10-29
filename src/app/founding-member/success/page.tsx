@@ -29,7 +29,7 @@ export default function FoundingMemberSuccess() {
           runs, with no subscription.
         </p>
         <p className="text-crumb-cream/70 text-sm mb-6">
-          Crumbify is live on the App Store.
+          Crumbify is out now on iPhone.
         </p>
         <p className="text-crumb-cream text-base mb-6">
           Next step: download Crumbify from the App Store and sign up with the same email

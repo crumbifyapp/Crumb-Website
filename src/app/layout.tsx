@@ -1,7 +1,9 @@
 import type { Viewport } from "next";
 import { Bricolage_Grotesque, Hanken_Grotesk } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { rootMetadata } from "@/lib/seo";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/structured-data";
 import "./globals.css";
 
 const bricolage = Bricolage_Grotesque({
@@ -29,6 +31,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${bricolage.variable} ${hanken.variable}`}>
       <body className="antialiased">
+        <JsonLd data={organizationJsonLd()} />
+        <JsonLd data={websiteJsonLd()} />
         {children}
         <SpeedInsights />
       </body>
