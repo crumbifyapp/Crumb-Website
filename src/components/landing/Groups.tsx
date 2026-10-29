@@ -1,3 +1,4 @@
+import Image from "next/image";
 const GROUP_ROWS = [
   { image: "ramen.jpg", name: "Maki & Ramen", context: "Soho, Japanese", votes: "3 in" },
   { image: "noodles.jpg", name: "Master Wei", context: "Bloomsbury, Chinese", votes: "2 in" },
@@ -20,7 +21,7 @@ export function Groups() {
                 </div>
                 <div className="faces">
                   {FACES.map((face) => (
-                    <img className="av" src={`/media/people/${face}`} alt="" key={face} />
+                    <Image className="av" src={`/media/people/${face}`} alt="" width={36} height={36} key={face} />
                   ))}
                 </div>
               </div>
@@ -28,7 +29,7 @@ export function Groups() {
                 {GROUP_ROWS.map((r) => (
                   <div className="grow" key={r.name}>
                     <div className="pic">
-                      <img src={`/media/food/${r.image}`} alt="" />
+                      <Image src={`/media/food/${r.image}`} alt="" width={900} height={1199} sizes="50px" />
                     </div>
                     <div className="n">
                       {r.name}

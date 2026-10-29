@@ -1,3 +1,4 @@
+import Image from "next/image";
 const RECOS = [
   { image: "steak.jpg", name: "Blacklock", context: "Soho, Steak", match: "94%" },
   { image: "carbonara.jpg", name: "Bancone", context: "Covent Garden, Italian", match: "91%" },
@@ -23,9 +24,9 @@ export function TasteMatch() {
           <div className="feat-media reveal">
             <div className="match-card">
               <div className="match-top">
-                <img className="av" src="/media/people/arena.jpg" alt="" style={{ width: 62, height: 62 }} />
+                <Image className="av" src="/media/people/arena.jpg" alt="" width={62} height={62} />
                 <div className="match-line" />
-                <img className="av" src="/media/people/canal.jpg" alt="" style={{ width: 62, height: 62 }} />
+                <Image className="av" src="/media/people/canal.jpg" alt="" width={62} height={62} />
               </div>
               <div className="match-pct">
                 87%
@@ -35,7 +36,7 @@ export function TasteMatch() {
                 {RECOS.map((r) => (
                   <div className="r" key={r.name}>
                     <div className="pic">
-                      <img src={`/media/food/${r.image}`} alt="" />
+                      <Image src={`/media/food/${r.image}`} alt="" width={900} height={1199} sizes="54px" />
                     </div>
                     <div className="n">
                       {r.name}
