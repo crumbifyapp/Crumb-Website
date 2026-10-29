@@ -39,3 +39,29 @@ Branch: `seo/ai-search-fix-pack`. Merge and deploy only on the owner's word.
 - Unit C, next/image swap (5 components): sonnet writer, because there is a visual-regression
   risk with the absolutely positioned parallax containers.
 - Review: sonnet, read-only.
+
+## Additions after review (sonnet reviewer, no blockers)
+- Sitemap home lastModified bumped to 2026-10-29 (the landing changed on this branch).
+- Share pages also set `itunes.appArgument` to their own URL, so the Smart App Banner opens the
+  shared item in the app rather than the app home (haiku writer).
+- Support had no meta description; it now has "Got a question or need help with Crumbify? Read
+  the FAQ or contact the team."
+- The success page is noindex, follow (a post-payment page), which goes beyond the brief.
+- The FAQ heading accent (`em.s`) inherits ink, not the gold the other section headings use,
+  because of the no-gold-text rule. It's a writer choice; easy to revert if the owner prefers gold.
+- `SUPPORT_EMAIL` lives in `src/components/seo/site-contact.ts` because
+  `no-committed-secrets.test.ts` rejects `@crumbify.co.uk` literals under `src/lib`.
+
+## Open for the owner
+- Monthly Wrapped appears in the landing FAQ and the FAQPage JSON-LD (the HQ brief asked for it,
+  copied from /support, and app `premium-perks.ts` shows it live since 2026-07-31). This
+  contradicts the CLAUDE.md note "Wrapped is intentionally NOT featured". Decide which is
+  current; if Wrapped should stay unfeatured, trim the FAQ answer in `faq-data.ts`.
+- llms.txt still returns 404. The audit ranked it, but it was not one of the nine fixes.
+
+## Gates (main checkout, merged branch)
+tsc clean; jest 68 suites / 948 tests pass; eslint clean on every changed file (the 2
+pre-existing lint errors are in untouched files); `npm run build` passes, with `/` static plus
+1-day ISR. `next start` checks: robots.txt 200, sitemap.xml 200, a bad share id 404, an unknown
+route 404, 4 JSON-LD blocks that parse (Organization, WebSite, MobileApplication with live
+rating 5.0/6, FAQPage with 5 Qs), and every page has its own canonical and og:url.
