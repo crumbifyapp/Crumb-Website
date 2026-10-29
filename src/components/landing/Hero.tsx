@@ -14,8 +14,8 @@ export function Hero() {
             by the people <em className="s">you trust</em>.
           </h1>
           <p className="sub">
-            Every pin is a real spot a friend has actually been to, scored out of ten. Follow the ones
-            you trust, save what looks good, go eat.
+            Crumbify is a social food app for iPhone for finding, rating and saving restaurants with
+            your friends. Every pin is a real spot a friend has been to, scored out of ten.
           </p>
           <StoreBadges />
         </div>

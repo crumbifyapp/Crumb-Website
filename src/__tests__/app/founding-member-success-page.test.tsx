@@ -19,7 +19,7 @@ describe("founding member success page copy", () => {
       "You're a founding member. You get lifetime Premium for as long as Crumbify runs, with no subscription.",
     );
     expect(text).not.toContain("no subscription needed, ever");
-    expect(text).toContain("Crumbify is live on the App Store.");
+    expect(text).toContain("Crumbify is out now on iPhone.");
     expect(text).not.toContain("first-day access");
     expect(text).not.toContain("When Crumb launches");
     expect(text).not.toContain("moment it's ready");
