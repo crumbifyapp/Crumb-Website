@@ -5,7 +5,7 @@ import { SITE_URL } from "@/lib/seo";
 // new Date(), so the sitemap does not churn on every build. Bump a date
 // when that page's content changes.
 const LAST_MODIFIED = {
-  home: new Date("2026-10-22"),
+  home: new Date("2026-10-29"),
   support: new Date("2026-10-16"),
   privacy: new Date("2026-10-22"),
   terms: new Date("2026-10-22"),

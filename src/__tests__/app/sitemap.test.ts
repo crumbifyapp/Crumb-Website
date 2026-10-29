@@ -26,6 +26,11 @@ describe("sitemap()", () => {
     }
   });
 
+  it("dates the home page to its last landing content change (2026-10-29)", () => {
+    const home = entries.find((e) => e.url === "https://crumbify.co.uk/");
+    expect(home?.lastModified).toEqual(new Date("2026-10-29"));
+  });
+
   it("is deterministic across calls", () => {
     expect(sitemap()).toEqual(entries);
   });
