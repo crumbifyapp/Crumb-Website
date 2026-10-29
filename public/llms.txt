@@ -1,0 +1,30 @@
+# Crumbify
+
+> Crumbify is a social food app for iPhone for finding, rating and saving restaurants with your friends. It is made by Crumbify LTD in the UK.
+
+Crumbify is a social food app for iPhone. Discover restaurants through friends you trust, log everywhere you eat, rate it out of ten and save places to try.
+
+## FAQ
+
+### What is Crumbify?
+Crumbify is a social food app for iPhone. You follow friends, see the restaurants they post and how they score them out of ten, keep lists of places you have visited and places you have saved to try, and discover new spots on a map.
+
+### Is Crumbify free?
+Yes. Crumbify is free to download and use. Crumbify Premium is optional: it gives you Monthly Wrapped, removes Google ads (clearly labelled sponsored restaurant picks still appear, about half as often), and unlocks unlimited profile collections with a premium cover library plus a premium profile badge.
+
+### Which phones does Crumbify work on?
+Crumbify is out now on iPhone (iOS 16 or later). Android is coming soon.
+
+### How do I add restaurants?
+Share a TikTok or Instagram post into Crumbify from the share sheet, paste a Google Maps list link, or search for a place by name.
+
+### How is Crumbify different from Google reviews?
+Scores on Crumbify come from friends you choose to follow, not from strangers. You see where the people you trust actually eat and how they rate it.
+
+## Links
+
+- [Crumbify home](https://crumbify.co.uk/): what the app does and how it works
+- [Crumbify on the App Store](https://apps.apple.com/gb/app/crumbify/id6777163992): download for iPhone
+- [Support](https://crumbify.co.uk/support): help, FAQ and contact details
+- [Privacy Policy](https://crumbify.co.uk/privacy): how Crumbify handles your data
+- [Terms of Service](https://crumbify.co.uk/terms): terms for using the app

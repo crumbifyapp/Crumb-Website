@@ -20,7 +20,9 @@
  */
 
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { ProfileShareLanding } from "@/components/profile-share/ProfileShareLanding";
+import { APP_STORE_ID, pageMetadata, SITE_URL } from "@/lib/seo";
 
 // Mirrors the app repo's real username SHAPES so this page does not reject
 // a link that the app itself would happily resolve (fix-round r1, F53-R4):
@@ -49,30 +51,29 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { username } = await params;
-  const title = USERNAME_PATTERN.test(username)
-    ? `@${username} on Crumbify`
-    : "Crumbify profile";
+  if (!USERNAME_PATTERN.test(username)) notFound();
+  // noindex: every profile shows the same generic copy, so these are share
+  // links only. follow stays true and robots.txt allows the crawl, so bots
+  // can see the noindex.
   return {
-    title,
-    description: "Every bite tells a story. See this profile on Crumbify.",
-    alternates: { canonical: `https://crumbify.co.uk/u/${encodeURIComponent(username)}` },
+    ...pageMetadata({
+      path: `/u/${encodeURIComponent(username)}`,
+      title: `@${username} on Crumbify`,
+      description: "Every bite tells a story. See this profile on Crumbify.",
+    }),
+    robots: { index: false, follow: true },
+    // Smart App Banner opens the shared profile in the app, not the app home.
+    itunes: {
+      appId: APP_STORE_ID,
+      appArgument: `${SITE_URL}/u/${encodeURIComponent(username)}`,
+    },
   };
 }
 
 export default async function ProfileSharePage({ params }: PageProps) {
   const { username } = await params;
 
-  if (!USERNAME_PATTERN.test(username)) {
-    return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-[#F4ECE1] px-6 py-16 text-center text-[#1A1208]">
-        <h1 className="mb-4 text-2xl font-semibold">Profile not found</h1>
-        <p className="max-w-sm text-base text-[#4a3f33]">
-          This Crumbify profile link looks broken. Check the link and try
-          again.
-        </p>
-      </div>
-    );
-  }
+  if (!USERNAME_PATTERN.test(username)) notFound();
 
   return <ProfileShareLanding username={username} />;
 }

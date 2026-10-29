@@ -6,18 +6,33 @@
  * for the profile page. place_id is a Google Places id, not a UUID - see
  * PLACE_ID_PATTERN's own comment for the charset/length rationale (mirrors
  * the app repo's services/deeplinks/parse-place-id.ts exactly).
+ * SEO fix pack: a malformed id calls notFound() (a real 404) instead of
+ * rendering an inline 200 block, and a valid id is noindex with its own
+ * canonical and og:url.
  */
 
+jest.mock("next/navigation", () => ({
+  notFound: jest.fn(() => {
+    throw new Error("NEXT_NOT_FOUND");
+  }),
+}));
+
 import { render, screen } from "@testing-library/react";
+import { notFound } from "next/navigation";
 import PlaceSharePage, { generateMetadata } from "@/app/place/[id]/page";
 
 const VALID_ID = "ChIJN1t_tDeuEmsRUsoyG83frY4";
+
+beforeEach(() => {
+  (notFound as unknown as jest.Mock).mockClear();
+});
 
 describe("PlaceSharePage id validation", () => {
   it("renders the share landing for a valid Google Places id", async () => {
     const element = await PlaceSharePage({ params: Promise.resolve({ id: VALID_ID }) });
     render(element);
     expect(screen.getByRole("heading", { name: "A place on Crumbify" })).toBeInTheDocument();
+    expect(notFound).not.toHaveBeenCalled();
   });
 
   it("accepts an id containing underscores and hyphens", async () => {
@@ -28,20 +43,18 @@ describe("PlaceSharePage id validation", () => {
     expect(screen.getByRole("heading", { name: "A place on Crumbify" })).toBeInTheDocument();
   });
 
-  it('renders "Place not found" for an id containing disallowed characters', async () => {
-    const element = await PlaceSharePage({
-      params: Promise.resolve({ id: "../../etc/passwd" }),
-    });
-    render(element);
-    expect(screen.getByText("Place not found")).toBeInTheDocument();
+  it("calls notFound() for an id containing disallowed characters", async () => {
+    await expect(
+      PlaceSharePage({ params: Promise.resolve({ id: "../../etc/passwd" }) }),
+    ).rejects.toThrow("NEXT_NOT_FOUND");
+    expect(notFound).toHaveBeenCalledTimes(1);
   });
 
-  it('renders "Place not found" for an id exceeding the 300-char length cap', async () => {
-    const element = await PlaceSharePage({
-      params: Promise.resolve({ id: "a".repeat(301) }),
-    });
-    render(element);
-    expect(screen.getByText("Place not found")).toBeInTheDocument();
+  it("calls notFound() for an id exceeding the 300-char length cap", async () => {
+    await expect(
+      PlaceSharePage({ params: Promise.resolve({ id: "a".repeat(301) }) }),
+    ).rejects.toThrow("NEXT_NOT_FOUND");
+    expect(notFound).toHaveBeenCalledTimes(1);
   });
 
   it("accepts an id exactly at the 300-char length cap", async () => {
@@ -59,13 +72,30 @@ describe("generateMetadata id validation", () => {
     expect(metadata.title).toBe("A place on Crumbify");
   });
 
-  it("falls back to a generic title for a malformed id", async () => {
-    const metadata = await generateMetadata({ params: Promise.resolve({ id: "../bad" }) });
-    expect(metadata.title).toBe("Crumbify place");
+  it("calls notFound() for a malformed id", async () => {
+    await expect(
+      generateMetadata({ params: Promise.resolve({ id: "../bad" }) }),
+    ).rejects.toThrow("NEXT_NOT_FOUND");
+    expect(notFound).toHaveBeenCalledTimes(1);
   });
 
-  it("sets a canonical URL built from the encoded id", async () => {
+  it("sets a canonical URL and og:url built from the encoded id", async () => {
     const metadata = await generateMetadata({ params: Promise.resolve({ id: VALID_ID }) });
-    expect(metadata.alternates?.canonical).toBe(`https://crumbify.co.uk/place/${VALID_ID}`);
+    const url = `https://crumbify.co.uk/place/${VALID_ID}`;
+    expect(metadata.alternates?.canonical).toBe(url);
+    expect(metadata.openGraph).toMatchObject({ url });
+  });
+
+  it("sets the smart app banner app-argument to the canonical share URL", async () => {
+    const metadata = await generateMetadata({ params: Promise.resolve({ id: VALID_ID }) });
+    expect(metadata.itunes).toEqual({
+      appId: "6777163992",
+      appArgument: `https://crumbify.co.uk/place/${VALID_ID}`,
+    });
+  });
+
+  it("is noindex but followable", async () => {
+    const metadata = await generateMetadata({ params: Promise.resolve({ id: VALID_ID }) });
+    expect(metadata.robots).toEqual({ index: false, follow: true });
   });
 });

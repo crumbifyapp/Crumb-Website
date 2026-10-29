@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { LegalShell } from "@/components/legal/LegalShell";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/delete-account",
   title: "Delete Your Crumbify Account",
   description:
     "How to delete your Crumbify account and associated data, in the app or by email.",
-};
+});
 
 const headingStyle: React.CSSProperties = {
   fontSize: 20,

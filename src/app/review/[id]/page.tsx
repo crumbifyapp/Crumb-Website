@@ -21,7 +21,9 @@
  */
 
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { AppShareLanding } from "@/components/share-landing/AppShareLanding";
+import { APP_STORE_ID, pageMetadata, SITE_URL } from "@/lib/seo";
 
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
@@ -31,27 +33,29 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const title = UUID_PATTERN.test(id) ? "A review on Crumbify" : "Crumbify review";
+  if (!UUID_PATTERN.test(id)) notFound();
+  // noindex: every id shows the same generic copy, so these are share links
+  // only. follow stays true and robots.txt allows the crawl, so bots can see
+  // the noindex.
   return {
-    title,
-    description: "Every bite tells a story. See this review on Crumbify.",
-    alternates: { canonical: `https://crumbify.co.uk/review/${encodeURIComponent(id)}` },
+    ...pageMetadata({
+      path: `/review/${encodeURIComponent(id)}`,
+      title: "A review on Crumbify",
+      description: "Every bite tells a story. See this review on Crumbify.",
+    }),
+    robots: { index: false, follow: true },
+    // Smart App Banner opens the shared item in the app, not the app home.
+    itunes: {
+      appId: APP_STORE_ID,
+      appArgument: `${SITE_URL}/review/${encodeURIComponent(id)}`,
+    },
   };
 }
 
 export default async function ReviewSharePage({ params }: PageProps) {
   const { id } = await params;
 
-  if (!UUID_PATTERN.test(id)) {
-    return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-[#F4ECE1] px-6 py-16 text-center text-[#1A1208]">
-        <h1 className="mb-4 text-2xl font-semibold">Review not found</h1>
-        <p className="max-w-sm text-base text-[#4a3f33]">
-          This Crumbify review link looks broken. Check the link and try again.
-        </p>
-      </div>
-    );
-  }
+  if (!UUID_PATTERN.test(id)) notFound();
 
   return (
     <AppShareLanding

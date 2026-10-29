@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { LegalShell } from "@/components/legal/LegalShell";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/terms",
   title: "Terms of Service - Crumbify",
   description: "Terms and conditions for using the Crumbify app.",
-};
+});
 
 const headingStyle: React.CSSProperties = {
   fontSize: 20,
