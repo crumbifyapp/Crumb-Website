@@ -1,7 +1,20 @@
+import type { Metadata } from "next";
 import { StoreBadge } from "@/components/landing/StoreBadges";
 import { appleSvg } from "@/components/landing/data";
+import { pageMetadata } from "@/lib/seo";
 
 const APP_STORE_URL = "https://apps.apple.com/gb/app/crumbify/id6777163992";
+
+// Post-payment page: not for search results, but links on it can be followed.
+export const metadata: Metadata = {
+  ...pageMetadata({
+    path: "/founding-member/success",
+    title: "Welcome, founding member - Crumbify",
+    description:
+      "You're a Crumbify founding member. Here's how to unlock lifetime Premium in the app.",
+  }),
+  robots: { index: false, follow: true },
+};
 
 export default function FoundingMemberSuccess() {
   return (

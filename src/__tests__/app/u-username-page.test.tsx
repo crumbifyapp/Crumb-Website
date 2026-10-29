@@ -11,12 +11,26 @@
  * profile's default username 404s on the website even though the app-side
  * resolver (services/supabase/resolve-username.ts, app repo) resolves it
  * fine - this test fails on the narrower `/^[a-z0-9_]{3,30}$/`-only pattern.
+ * SEO fix pack: a rejected username calls notFound() (a real 404) instead of
+ * rendering an inline 200 block, and a valid one is noindex with its own
+ * canonical and og:url.
  */
 
+jest.mock("next/navigation", () => ({
+  notFound: jest.fn(() => {
+    throw new Error("NEXT_NOT_FOUND");
+  }),
+}));
+
 import { render, screen } from "@testing-library/react";
+import { notFound } from "next/navigation";
 import ProfileSharePage, { generateMetadata } from "@/app/u/[username]/page";
 
 const TRIGGER_DEFAULT_USERNAME = `user-${"a1b2c3d4e5f6".repeat(3).slice(0, 32)}`;
+
+beforeEach(() => {
+  (notFound as unknown as jest.Mock).mockClear();
+});
 
 describe("ProfileSharePage username validation (F53-R4)", () => {
   it("renders the profile-share landing for a claimed-username shape", async () => {
@@ -25,9 +39,10 @@ describe("ProfileSharePage username validation (F53-R4)", () => {
     });
     render(element);
     expect(screen.getByRole("heading", { name: "@alibars" })).toBeInTheDocument();
+    expect(notFound).not.toHaveBeenCalled();
   });
 
-  it("renders the profile-share landing for the trigger-generated default username shape (user-<32hex>) - NOT 'Profile not found'", async () => {
+  it("renders the profile-share landing for the trigger-generated default username shape (user-<32hex>) - NOT a 404", async () => {
     const element = await ProfileSharePage({
       params: Promise.resolve({ username: TRIGGER_DEFAULT_USERNAME }),
     });
@@ -35,29 +50,28 @@ describe("ProfileSharePage username validation (F53-R4)", () => {
     expect(
       screen.getByRole("heading", { name: `@${TRIGGER_DEFAULT_USERNAME}` }),
     ).toBeInTheDocument();
-    expect(screen.queryByText("Profile not found")).not.toBeInTheDocument();
+    expect(notFound).not.toHaveBeenCalled();
   });
 
-  it('renders "Profile not found" for a malformed/pathological username (too short)', async () => {
-    const element = await ProfileSharePage({ params: Promise.resolve({ username: "a" }) });
-    render(element);
-    expect(screen.getByText("Profile not found")).toBeInTheDocument();
+  it("calls notFound() for a malformed/pathological username (too short)", async () => {
+    await expect(ProfileSharePage({ params: Promise.resolve({ username: "a" }) })).rejects.toThrow(
+      "NEXT_NOT_FOUND",
+    );
+    expect(notFound).toHaveBeenCalledTimes(1);
   });
 
-  it('renders "Profile not found" for a username containing disallowed characters', async () => {
-    const element = await ProfileSharePage({
-      params: Promise.resolve({ username: "../../etc" }),
-    });
-    render(element);
-    expect(screen.getByText("Profile not found")).toBeInTheDocument();
+  it("calls notFound() for a username containing disallowed characters", async () => {
+    await expect(
+      ProfileSharePage({ params: Promise.resolve({ username: "../../etc" }) }),
+    ).rejects.toThrow("NEXT_NOT_FOUND");
+    expect(notFound).toHaveBeenCalledTimes(1);
   });
 
   it("does NOT accept a 'user-' prefixed value that is not exactly 32 lowercase-hex characters (still rejects genuinely malformed input)", async () => {
-    const element = await ProfileSharePage({
-      params: Promise.resolve({ username: "user-tooshort" }),
-    });
-    render(element);
-    expect(screen.getByText("Profile not found")).toBeInTheDocument();
+    await expect(
+      ProfileSharePage({ params: Promise.resolve({ username: "user-tooshort" }) }),
+    ).rejects.toThrow("NEXT_NOT_FOUND");
+    expect(notFound).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -76,9 +90,26 @@ describe("generateMetadata username validation (F53-R4)", () => {
     expect(metadata.title).toBe(`@${TRIGGER_DEFAULT_USERNAME} on Crumbify`);
   });
 
-  it("falls back to a generic title for a malformed username", () => {
-    return generateMetadata({ params: Promise.resolve({ username: "a" }) }).then((metadata) => {
-      expect(metadata.title).toBe("Crumbify profile");
+  it("calls notFound() for a malformed username", async () => {
+    await expect(generateMetadata({ params: Promise.resolve({ username: "a" }) })).rejects.toThrow(
+      "NEXT_NOT_FOUND",
+    );
+    expect(notFound).toHaveBeenCalledTimes(1);
+  });
+
+  it("sets a canonical URL and og:url built from the encoded username", async () => {
+    const metadata = await generateMetadata({
+      params: Promise.resolve({ username: "alibars" }),
     });
+    const url = "https://crumbify.co.uk/u/alibars";
+    expect(metadata.alternates?.canonical).toBe(url);
+    expect(metadata.openGraph).toMatchObject({ url });
+  });
+
+  it("is noindex but followable", async () => {
+    const metadata = await generateMetadata({
+      params: Promise.resolve({ username: "alibars" }),
+    });
+    expect(metadata.robots).toEqual({ index: false, follow: true });
   });
 });
