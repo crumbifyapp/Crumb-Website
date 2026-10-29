@@ -75,7 +75,7 @@ describe("rootMetadata", () => {
   });
 
   it("keeps metadataBase and the root canonical", () => {
-    expect(rootMetadata.metadataBase?.href).toBe(`${SITE_URL}/`);
+    expect(String(rootMetadata.metadataBase)).toBe(`${SITE_URL}/`);
     expect(rootMetadata.alternates?.canonical).toBe(`${SITE_URL}/`);
     expect(rootMetadata.keywords).toContain("crumbify");
   });
