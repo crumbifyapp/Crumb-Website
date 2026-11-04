@@ -97,6 +97,16 @@ Design signed off round 2. Final edits: `.here2` blue dot removed with `HERE_POS
 
 Hero map recoloured by Design and swapped in (D343): same 1440x900 and geography, no baked-in badge. `.landing #lmap img`'s colour filter removed at Design's request, because the file is already on palette. The slide and fade stay; the map credit is unchanged.
 
+## Map credit moved onto the hero (D344)
+
+CARTO's terms require the credit to be legible in the image, so a footer-only credit falls short. The line is exactly "© OpenStreetMap contributors, © CARTO", with both names linked, and the footer credit is gone. It's a sibling of `#lmap`, because that element is `aria-hidden`, masked and slid up on short screens.
+
+Top-left, directly under the header, because top-right collides with Maki & Ramen on short screens and the bottom of the map is faded. 12px at left 16px clipped the Norma pin at 1280x720, so it's 11px at top 84px, left 8px. Below 340px wide the headline covers the top of the hero, so the credit goes under the store badges. At 320x568 that's just below the first screen.
+
+Known overlap: windows 921 to about 960px wide and about 720px tall, up to 6px at the top of the pin's float. The credit stays on top. Left alone as a rare size with no clear corner.
+
+After merge, Design renders our own map from OpenStreetMap data and the credit changes to OpenStreetMap only. The owner also kept the privacy wording change, with "Last updated" unchanged (D345).
+
 ## Vercel build failure: intermittent, cause unknown (read this on merge day)
 
 The git-triggered previews for 3d4b5d8 (about 16:30 UTC) and c7a1a73 (about 16:35) both failed on Vercel with
@@ -133,5 +143,6 @@ comment in `landing.css`). Verified: run on a clean build of main at 5873224, it
   because each brief covered many files or constraints.
 - Unit F (review fixes, about 5 small exact changes): Haiku writer.
 - Units G and H (Design's changes, exact CSS and small component edits): Haiku writer.
+- Map credit (exact change, about 6 files, one concern): Haiku writer.
 - Review: one Sonnet reviewer, read-only. No blockers; 1 SHOULD and several notes, fixed in unit F.
 - Assets and docs: orchestrator (generated PNG and ICO files, markdown).
