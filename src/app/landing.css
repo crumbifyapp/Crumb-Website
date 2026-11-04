@@ -3,7 +3,7 @@
   --blue:#4d86c4; --teal:#79B8AD; --teal-2:#4E8C81;
   --on-dark:#FFFFFF; --on-dark-2:#C2D6CF; --on-dark-3:#8AA69C; --line-dark:rgba(255,255,255,.14); --ink-deep:#140C07;
   --cream-a0:rgba(230,240,238,0); --cream-a50:rgba(230,240,238,.5); --cream-a80:rgba(230,240,238,.8); --cream-a97:rgba(230,240,238,.97);
-  --card-a90:rgba(255,255,255,.9); --blue-a20:rgba(77,134,196,.2);
+  --card-a90:rgba(255,255,255,.9);
   --shadow-08:rgba(39,24,14,.08); --shadow-12:rgba(39,24,14,.12); --shadow-16:rgba(39,24,14,.16); --shadow-32:rgba(39,24,14,.32);
   --scrim-15:rgba(39,24,14,.15); --scrim-55:rgba(39,24,14,.55); --scrim-82:rgba(39,24,14,.82); --scrim-72:rgba(39,24,14,.72);
   --disp:var(--font-disp),"Bricolage Grotesque",sans-serif; --body:var(--font-body),"Hanken Grotesk",sans-serif; --ser:"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -86,8 +86,6 @@
 @keyframes float{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,calc(-50% - 9px))}}
 .landing .here2{position:absolute;left:0;top:0;transform:translate(-50%,-50%)}
 .landing .here2 .d{width:18px;height:18px;border-radius:50%;background:var(--blue);border:3px solid #fff;box-shadow:0 3px 10px rgba(0,0,0,.3)}
-.landing .here2 .r{position:absolute;inset:-14px;border-radius:50%;background:var(--blue-a20);animation:ping 2.6s ease-out infinite}
-@keyframes ping{0%{transform:scale(.5);opacity:.8}100%{transform:scale(1.5);opacity:0}}
 .landing .hero-mask{position:absolute;left:0;bottom:0;width:100%;height:64%;background:linear-gradient(var(--cream-a0),var(--cream-a50) 32%,var(--cream-a97) 80%);z-index:8;pointer-events:none}
 .landing .hero-c{position:absolute;z-index:12;left:0;bottom:9vh;width:100%;pointer-events:none}
 .landing .hero-c .in{padding:0 32px;max-width:min(780px,92vw);margin-left:max(32px,calc((100vw - var(--wrap))/2 + 32px))}
