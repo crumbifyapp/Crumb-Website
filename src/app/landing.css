@@ -160,8 +160,6 @@
 .landing .band-media .ph{width:100%;height:100%}
 .landing .band::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--scrim-15),var(--scrim-55));z-index:2}
 .landing .band-cap{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 32px}
-.landing .band-cap .k{background:var(--teal);color:var(--ink);padding:6px 12px;border-radius:8px;margin-bottom:22px}
-.landing .band-cap .k::before{display:none}
 .landing .band-cap p{font-family:var(--ser);font-style:normal;font-weight:700;font-size:clamp(34px,5.2vw,68px);color:#fff;line-height:1.1;max-width:15ch;text-wrap:balance;text-shadow:0 2px 30px rgba(0,0,0,.3)}
 
 /* FEATURE ROWS */
