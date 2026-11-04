@@ -4,10 +4,12 @@
  * Guards the shared SEO helper. Next shallow-merges metadata, so a child
  * page's openGraph/twitter REPLACES the root's whole object: pageMetadata
  * must always emit the complete objects, and rootMetadata must carry the
- * exact brief strings, the real 2400x1260 OG image size and the Smart App
+ * exact brief strings, the real 1200x630 OG image size and the Smart App
  * Banner id.
  */
 
+import { readFileSync } from "fs";
+import { join } from "path";
 import { OG_IMAGE, SITE_URL, pageMetadata, rootMetadata } from "@/lib/seo";
 
 const TITLE = "Crumbify: Restaurant Discovery App for iPhone";
@@ -18,10 +20,16 @@ describe("OG_IMAGE", () => {
   it("declares the real pixel size of public/images/og-image.png", () => {
     expect(OG_IMAGE).toEqual({
       url: "/images/og-image.png",
-      width: 2400,
-      height: 1260,
+      width: 1200,
+      height: 630,
       alt: "Crumbify",
     });
+  });
+
+  it("matches the IHDR width and height of the PNG file", () => {
+    const png = readFileSync(join(process.cwd(), "public/images/og-image.png"));
+    expect(png.readUInt32BE(16)).toBe(OG_IMAGE.width);
+    expect(png.readUInt32BE(20)).toBe(OG_IMAGE.height);
   });
 });
 

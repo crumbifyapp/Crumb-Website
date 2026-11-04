@@ -18,8 +18,8 @@ export const APP_STORE_ID = "6777163992";
 // The real pixel size of public/images/og-image.png.
 export const OG_IMAGE = {
   url: "/images/og-image.png",
-  width: 2400,
-  height: 1260,
+  width: 1200,
+  height: 630,
   alt: "Crumbify",
 };
 
