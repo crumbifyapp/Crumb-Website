@@ -75,7 +75,7 @@
 
 /* HERO */
 .landing .hero{position:relative;height:100vh;min-height:720px;overflow:hidden;background:var(--cream-2)}
-.landing #lmap{position:absolute;inset:0;z-index:1;background:var(--cream-2)}
+.landing #lmap{position:absolute;inset:0;z-index:1;background:var(--cream-2);-webkit-mask-image:linear-gradient(#000 78%,transparent 94%);mask-image:linear-gradient(#000 78%,transparent 94%)}
 @media(min-width:921px){.landing #lmap{translate:0 calc(-1*max(0px,500px - max(46.7vh,336px)))}}
 .landing #lmap img{filter:saturate(.94) brightness(1.02) sepia(.05)}
 .landing .pinwrap{position:absolute;left:0;top:0;display:flex;align-items:center;gap:9px;transform:translate(-50%,-50%);will-change:transform}
@@ -110,7 +110,7 @@
 
 /* MANIFESTO */
 .landing .manifesto{text-align:center;padding:clamp(90px,13vw,170px) 0}
-.landing .manifesto p{font-family:var(--disp);font-size:clamp(30px,4.2vw,54px);line-height:1.24;color:var(--ink);max-width:18ch;margin:0 auto;font-style:normal;font-weight:800;text-wrap:balance}
+.landing .manifesto p{font-family:var(--disp);font-size:clamp(30px,4.2vw,54px);line-height:1.24;color:var(--ink);max-width:20ch;margin:0 auto;font-style:normal;font-weight:800;text-wrap:balance}
 .landing .manifesto p b{font-style:normal;font-family:inherit;font-weight:inherit;color:var(--ink)}
 .landing .manifesto .k{margin-bottom:34px;justify-content:center;display:flex}
 
