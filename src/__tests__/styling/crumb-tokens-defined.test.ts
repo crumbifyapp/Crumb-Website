@@ -3,8 +3,8 @@
  * `--color-crumb-<name>` token declared in the `@theme` block of src/app/globals.css.
  *
  * Tailwind silently drops an unknown utility (no CSS is emitted), so a typo such as
- * `bg-crumb-brown` or `text-crumb-muted` renders as the browser default: a button loses its
- * background and muted text turns white. No runtime test sees that, so this static guard reads
+ * `bg-crumb-brown` or `text-crumb-subtle` renders as the browser default: a button loses its
+ * background and subtle text turns white. No runtime test sees that, so this static guard reads
  * the theme and the sources and fails on any class whose token is not defined.
  */
 import { readFileSync, readdirSync } from "fs";
@@ -92,12 +92,12 @@ describe("crumb-* colour utilities resolve to the @theme tokens", () => {
 
   it("parses the token names declared in the @theme block", () => {
     expect(defined.size).toBeGreaterThan(0);
-    expect(defined.has("ink-deep")).toBe(true);
+    expect(defined.has("bg-2")).toBe(true);
   });
 
   it("flags utility classes whose token is not declared", () => {
     const source =
-      '<a className="inline-block bg-crumb-brown hover:bg-crumb-dark text-crumb-cream border-t-crumb-nope drop-shadow-crumb-nope">';
+      '<a className="inline-block bg-crumb-brown hover:bg-crumb-dark text-crumb-text border-t-crumb-nope drop-shadow-crumb-nope">';
     expect(findUndefinedCrumbClasses(source, defined)).toEqual([
       "bg-crumb-brown",
       "hover:bg-crumb-dark",
@@ -108,7 +108,7 @@ describe("crumb-* colour utilities resolve to the @theme tokens", () => {
 
   it("accepts declared tokens, opacity modifiers and non-utility crumb words", () => {
     const source =
-      'className="bg-crumb-ink-deep text-crumb-cream/70 border-crumb-gold"; host = "crumb-website-git-preview"';
+      'className="bg-crumb-bg text-crumb-text/70 border-crumb-teal"; host = "crumb-website-git-preview"';
     expect(findUndefinedCrumbClasses(source, defined)).toEqual([]);
   });
 
