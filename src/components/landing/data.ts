@@ -145,7 +145,6 @@ export const spots: Spot[] = [
   { lat: 51.514, lng: -0.1235, name: "Norma", context: "Sam went", score: "8.6", primary: false },
 ];
 
-export const HERE_POSITION: [number, number] = [51.5145, -0.101];
 export const MAP_CENTER: [number, number] = [51.51, -0.094];
 export const MAP_ZOOM = 14;
 
