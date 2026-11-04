@@ -76,6 +76,7 @@
 /* HERO */
 .landing .hero{position:relative;height:100vh;min-height:720px;overflow:hidden;background:var(--cream-2)}
 .landing #lmap{position:absolute;inset:0;z-index:1;background:var(--cream-2)}
+@media(min-width:921px){.landing #lmap{translate:0 calc(-1*max(0px,500px - max(46.7vh,336px)))}}
 .landing #lmap img{filter:saturate(.94) brightness(1.02) sepia(.05)}
 .landing .pinwrap{position:absolute;left:0;top:0;display:flex;align-items:center;gap:9px;transform:translate(-50%,-50%);will-change:transform}
 .landing .pinwrap .puck{box-shadow:0 12px 26px var(--shadow-32);border:3px solid var(--card)}
