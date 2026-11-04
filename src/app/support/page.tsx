@@ -107,7 +107,7 @@ export default function SupportPage() {
             marginTop: 12,
             marginBottom: 20,
             fontSize: 15,
-            color: "var(--color-crumb-muted)",
+            color: "var(--color-crumb-text-soft)",
             lineHeight: 1.5,
           }}
         >
