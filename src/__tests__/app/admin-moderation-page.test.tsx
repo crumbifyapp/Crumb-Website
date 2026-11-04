@@ -134,7 +134,7 @@ describe('admin moderation page', () => {
     const reportSource = screen.getByText('post_reports');
     expect(reportSource).toBeInTheDocument();
     expect(reportSource).toHaveClass('opacity-60');
-    expect(reportSource).not.toHaveClass('text-[#E6C39B]');
+    expect(reportSource).not.toHaveClass('text-crumb-teal');
     expect(screen.getByText('group_content_reports')).toBeInTheDocument();
     expect(screen.getByText('Report #42')).toBeInTheDocument();
     expect(screen.getByText('safety')).toBeInTheDocument();
