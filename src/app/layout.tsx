@@ -21,7 +21,7 @@ const hanken = Hanken_Grotesk({
 
 export const metadata = rootMetadata;
 
-export const viewport: Viewport = { themeColor: "#F4ECE1" };
+export const viewport: Viewport = { themeColor: "#E6F0EE" };
 
 export default function RootLayout({
   children,
