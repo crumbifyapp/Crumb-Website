@@ -15,9 +15,9 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-[#F4ECE1] px-6 py-16 text-center text-[#1A1208]">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-crumb-light-bg px-6 py-16 text-center text-crumb-light-ink">
       <h1 className="mb-4 text-2xl font-semibold">Page not found</h1>
-      <p className="mb-6 max-w-sm text-base text-[#4a3f33]">
+      <p className="mb-6 max-w-sm text-base text-crumb-light-ink-soft">
         This link doesn&apos;t go anywhere on Crumbify.
       </p>
       <Link href="/" className="text-base font-semibold underline underline-offset-4">
