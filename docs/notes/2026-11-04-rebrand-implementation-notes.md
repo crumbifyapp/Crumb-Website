@@ -95,6 +95,8 @@ Manifesto width went from 18ch to 20ch, because the wider font left "go." alone 
 Design signed off round 2. Final edits: `.here2` blue dot removed with `HERE_POSITION` and `--blue`, and `.band-cap p` and
 `.footer-brand p` moved to `--disp`. Owner decision D343: the hero map is recoloured before merge. Design supplies the file.
 
+Hero map recoloured by Design and swapped in (D343): same 1440x900 and geography, no baked-in badge. `.landing #lmap img`'s colour filter removed at Design's request, because the file is already on palette. The slide and fade stay; the map credit is unchanged.
+
 ## Vercel build failure: intermittent, cause unknown (read this on merge day)
 
 The git-triggered previews for 3d4b5d8 (about 16:30 UTC) and c7a1a73 (about 16:35) both failed on Vercel with
