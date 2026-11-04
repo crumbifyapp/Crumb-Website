@@ -46,7 +46,7 @@ describe("Home page composition", () => {
   it("renders the landing sections without crashing", async () => {
     render(await Home());
 
-    expect(screen.getAllByText("Crumbify").length).toBeGreaterThan(0);
+    expect(screen.getAllByRole("img", { name: "Crumbify" }).length).toBeGreaterThan(0);
     expect(screen.getByText(/Your city, scored/i)).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 2, name: /loop/i })).toBeInTheDocument();
     expect(screen.getAllByText(/Founding member/i).length).toBeGreaterThan(0);
