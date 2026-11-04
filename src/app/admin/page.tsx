@@ -51,11 +51,11 @@ export default async function AdminPage() {
     <main className="mx-auto max-w-7xl space-y-6 p-4 sm:p-6">
       <header className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-white/10 bg-black/20 p-5">
         <div className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#E6C39B] text-lg font-bold text-[#1A1208]">
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-crumb-teal text-lg font-bold text-crumb-on-teal">
             C
           </span>
           <div>
-            <h1 className="text-2xl font-bold text-[#E6C39B]">Crumbify Admin</h1>
+            <h1 className="text-2xl font-bold text-crumb-teal">Crumbify Admin</h1>
             <p className="text-xs opacity-60">
               Last updated {new Date().toLocaleString('en-GB')} · auto-refreshes every 5 min
             </p>
@@ -64,13 +64,13 @@ export default async function AdminPage() {
         <div className="flex flex-wrap gap-2">
           <Link
             href="/admin/moderation"
-            className="inline-flex min-h-[44px] items-center rounded-lg border border-[#E6C39B]/40 px-4 text-sm font-semibold text-[#E6C39B] hover:bg-[#E6C39B]/10"
+            className="inline-flex min-h-[44px] items-center rounded-lg border border-crumb-teal/40 px-4 text-sm font-semibold text-crumb-teal hover:bg-crumb-teal/10"
           >
             Moderation
           </Link>
           <Link
             href="/admin/referrals"
-            className="inline-flex min-h-[44px] items-center rounded-lg border border-[#E6C39B]/40 px-4 text-sm font-semibold text-[#E6C39B] hover:bg-[#E6C39B]/10"
+            className="inline-flex min-h-[44px] items-center rounded-lg border border-crumb-teal/40 px-4 text-sm font-semibold text-crumb-teal hover:bg-crumb-teal/10"
           >
             Referrals dashboard
           </Link>
@@ -193,7 +193,7 @@ export default async function AdminPage() {
         connected={referrals != null}
         unavailableReason="Referral click data failed to load from Supabase."
         action={
-          <Link href="/admin/referrals" className="text-sm font-medium text-[#E6C39B] hover:underline">
+          <Link href="/admin/referrals" className="text-sm font-medium text-crumb-teal hover:underline">
             View full dashboard →
           </Link>
         }

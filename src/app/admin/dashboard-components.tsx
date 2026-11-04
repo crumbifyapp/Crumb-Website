@@ -27,7 +27,7 @@ export function DashboardSection({
     <section className="rounded-2xl border border-white/10 bg-black/20 p-5 sm:p-6">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div>
-          <h2 className="text-lg font-semibold text-[#E6C39B]">{title}</h2>
+          <h2 className="text-lg font-semibold text-crumb-teal">{title}</h2>
           {subtitle && <p className="mt-0.5 text-xs opacity-60">{subtitle}</p>}
         </div>
         <div className="flex items-center gap-3">
@@ -95,7 +95,7 @@ export function StatCard({
     <div className="min-h-[44px] rounded-xl border border-white/10 bg-white/[0.03] p-4">
       <div className="text-xs font-medium opacity-60">{label}</div>
       {hasValue ? (
-        <div className="mt-1.5 text-2xl font-bold tabular-nums text-[#F4ECE1]">{display}</div>
+        <div className="mt-1.5 text-2xl font-bold tabular-nums text-crumb-text">{display}</div>
       ) : (
         <div className="mt-1.5 text-sm italic opacity-45">
           {unavailable ? 'Unavailable' : 'No data'}
@@ -143,10 +143,10 @@ export function HeroStat({
     : null;
 
   return (
-    <div className="min-h-[44px] rounded-2xl border border-[#E6C39B]/25 bg-gradient-to-b from-[#E6C39B]/10 to-transparent p-5">
+    <div className="min-h-[44px] rounded-2xl border border-crumb-teal/25 bg-gradient-to-b from-crumb-teal/10 to-transparent p-5">
       <div className="text-xs font-medium uppercase opacity-60">{label}</div>
       {hasValue ? (
-        <div className="mt-2 text-3xl font-bold tabular-nums text-[#E6C39B] sm:text-4xl">
+        <div className="mt-2 text-3xl font-bold tabular-nums text-crumb-teal sm:text-4xl">
           {display}
         </div>
       ) : (
@@ -170,7 +170,7 @@ export function ListCard({
   return (
     <section className="rounded-2xl border border-white/10 bg-black/20 p-5 sm:p-6">
       <div className="flex items-center justify-between gap-2">
-        <h2 className="text-lg font-semibold text-[#E6C39B]">{title}</h2>
+        <h2 className="text-lg font-semibold text-crumb-teal">{title}</h2>
         {action}
       </div>
       <div className="mt-3 divide-y divide-white/10 overflow-hidden rounded-lg border border-white/10">
