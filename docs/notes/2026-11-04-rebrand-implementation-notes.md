@@ -79,21 +79,25 @@ Never white text on teal. Never teal text on a light background.
 10. **"Crumbify" text beside the logo removed** from the header and footer, because the lockup contains the word. The
     link's accessible name comes from the svg's aria-label.
 
-## Vercel build failure: the build cache (read this on merge day)
+## Vercel build failure: intermittent, cause unknown (read this on merge day)
 
-The git-triggered previews for 3d4b5d8 and c7a1a73 both failed on Vercel with
+The git-triggered previews for 3d4b5d8 (about 16:30 UTC) and c7a1a73 (about 16:35) both failed on Vercel with
 `Module not found: Can't resolve '@vercel/turbopack-next/internal/font/google/font'` and
 `next/font/google queries have exactly one entry`, for Nunito in `LegalShell.tsx`, with 15 errors.
 
 What was tested:
-- The log says `Restored build cache from previous deployment` (the 29 Oct production deploy, dpl_5x61SEuY).
-- `vercel deploy --force` of the same commit, which skips the build cache, is READY (dpl_4E9Gc6G6).
+- `vercel deploy --force` of c7a1a73, which skips the build cache, is READY (dpl_4E9Gc6G6, about 16:39).
+- The git-triggered preview of 7bf893a is READY (dpl_GuXamk42, about 16:42). It **restored the same 29 Oct build cache
+  as the failures** (dpl_5x61SEuY), used the same Next 16.3.8, and differs from c7a1a73 only in a docs file.
 - A clean local build passes for this branch and for untouched main at 5873224 (Next 16.3.8 from a fresh `npm ci`).
 
-So the code is fine. The cause is most likely the cache rather than the commit, but that rests on one comparison. The
-production deploy on merge may restore the same cache and fail the same way. A failed production deploy leaves the old
-site serving, so it isn't an outage, but the rebrand wouldn't be live. **On merge day, watch the deploy. If it shows
-this error, use Redeploy with the build cache option turned off.**
+So neither the code nor the build cache explains it, and an earlier version of this note that blamed the cache was
+wrong. The same inputs failed and then passed minutes later, so the failure is intermittent. The timing suggests
+something transient while fetching Google Fonts, but that is not proven. The same error also hit a writer's worktree
+build during the 29 Oct job, so it may recur.
+
+A failed production deploy leaves the old site serving, so it isn't an outage, but the rebrand wouldn't be live.
+**On merge day, watch the deploy. If it shows this error, redeploy and check again.**
 
 ## Known e2e failure, not from this branch
 
