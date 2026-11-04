@@ -79,6 +79,19 @@ Never white text on teal. Never teal text on a light background.
 10. **"Crumbify" text beside the logo removed** from the header and footer, because the lockup contains the word. The
     link's accessible name comes from the svg's aria-label.
 
+## Design review round 1 (4 Nov, `design/outbox/2026-11-04-website-rebrand-review/REVIEW.md`)
+
+Applied: accents inherit the heading font, orange `--hi` retired (guard rejects it), pulse ring removed, band label removed.
+This reverses decision 3's small bar and decision 1's band label, and the earlier eyebrow note about `--hi`.
+
+Headline over pins: measured overlap at 1024x768, 1280x720, 1366x768, 1440x900 and 1536x864, so hiding one pin (Design's
+simplest option) would not have fixed it. Moving pins would have put real restaurants in the wrong place, and the hero copy says
+every pin is a real spot. Instead `#lmap` slides up with `translate` by `max(0px, 500px - max(46.7vh, 336px))` above 921px wide.
+That left a hard seam at the map's bottom edge on short screens, so the map now fades out from 78% to 94% of its height. The
+fade also hides the baked-in "N" badge. Still overlapping at 360x640, unchanged from before this job.
+
+Manifesto width went from 18ch to 20ch, because the wider font left "go." alone on the last line.
+
 ## Vercel build failure: intermittent, cause unknown (read this on merge day)
 
 The git-triggered previews for 3d4b5d8 (about 16:30 UTC) and c7a1a73 (about 16:35) both failed on Vercel with
@@ -114,5 +127,6 @@ comment in `landing.css`). It fails on main's code too. Left alone, outside this
 - Units A to E (tokens and landing CSS, admin, legal and share pages, logo and metadata, colour guard): Sonnet writers,
   because each brief covered many files or constraints.
 - Unit F (review fixes, about 5 small exact changes): Haiku writer.
+- Unit G (Design's changes, exact CSS and small component edits): Haiku writer.
 - Review: one Sonnet reviewer, read-only. No blockers; 1 SHOULD and several notes, fixed in unit F.
 - Assets and docs: orchestrator (generated PNG and ICO files, markdown).
