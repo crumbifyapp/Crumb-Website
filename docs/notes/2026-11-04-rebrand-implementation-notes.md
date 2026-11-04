@@ -73,6 +73,42 @@ Never white text on teal. Never teal text on a light background.
    `.animated-border-gradient` with its `--angle` property and keyframes. None has a user.
 8. **Amber warning callout in admin/referrals stays.** It is Tailwind's amber as a warning state, not the brand.
 
+9. **Privacy policy: removed the word "gold" from `"Sponsored" label`.** In the app's 1.4.2 code the chip uses the
+   brand fill (`components/feed/SponsoredCard.tsx`), so "gold" would be false once it ships. Without the colour word,
+   the sentence is true before and after. The "Last updated" date is unchanged because the meaning didn't change.
+10. **"Crumbify" text beside the logo removed** from the header and footer, because the lockup contains the word. The
+    link's accessible name comes from the svg's aria-label.
+
+## Vercel build failure: the build cache (read this on merge day)
+
+The git-triggered previews for 3d4b5d8 and c7a1a73 both failed on Vercel with
+`Module not found: Can't resolve '@vercel/turbopack-next/internal/font/google/font'` and
+`next/font/google queries have exactly one entry`, for Nunito in `LegalShell.tsx`, with 15 errors.
+
+What was tested:
+- The log says `Restored build cache from previous deployment` (the 29 Oct production deploy, dpl_5x61SEuY).
+- `vercel deploy --force` of the same commit, which skips the build cache, is READY (dpl_4E9Gc6G6).
+- A clean local build passes for this branch and for untouched main at 5873224 (Next 16.3.8 from a fresh `npm ci`).
+
+So the code is fine. The cause is most likely the cache rather than the commit, but that rests on one comparison. The
+production deploy on merge may restore the same cache and fail the same way. A failed production deploy leaves the old
+site serving, so it isn't an outage, but the rebrand wouldn't be live. **On merge day, watch the deploy. If it shows
+this error, use Redeploy with the build cache option turned off.**
+
+## Known e2e failure, not from this branch
+
+`tests/e2e/mobile-responsive.spec.ts:86` looks for a `.store` class that main already removed on purpose (see the
+comment in `landing.css`). It fails on main's code too. Left alone, outside this job.
+
+## Not verified
+
+- Logged-in admin pages: behind the magic link, so covered only by the colour guard and the review.
+- Share pages with real data (`/place`, `/review`, `/post`, `/u`).
+
 ## Lanes
 
-To be filled in as units land.
+- Units A to E (tokens and landing CSS, admin, legal and share pages, logo and metadata, colour guard): Sonnet writers,
+  because each brief covered many files or constraints.
+- Unit F (review fixes, about 5 small exact changes): Haiku writer.
+- Review: one Sonnet reviewer, read-only. No blockers; 1 SHOULD and several notes, fixed in unit F.
+- Assets and docs: orchestrator (generated PNG and ICO files, markdown).
