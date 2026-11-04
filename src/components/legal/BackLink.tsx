@@ -10,16 +10,16 @@ export function BackLink() {
         gap: 6,
         fontSize: 14,
         fontWeight: 600,
-        color: "#E6C39B",
+        color: "var(--color-crumb-teal)",
         textDecoration: "none",
         fontFamily: "inherit",
         transition: "color 0.15s",
       }}
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLAnchorElement).style.color = "#C9A077";
+        (e.currentTarget as HTMLAnchorElement).style.color = "var(--color-crumb-teal-hover)";
       }}
       onMouseLeave={(e) => {
-        (e.currentTarget as HTMLAnchorElement).style.color = "#E6C39B";
+        (e.currentTarget as HTMLAnchorElement).style.color = "var(--color-crumb-teal)";
       }}
     >
       <span style={{ fontSize: 16 }}>&#8592;</span> Back to home
