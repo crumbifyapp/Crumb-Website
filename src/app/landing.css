@@ -16,7 +16,7 @@
 .landing p{margin:0}
 .landing a{color:var(--ink);text-decoration:underline}.landing a:hover{color:var(--ink-2)}
 .landing .wrap{max-width:var(--wrap);margin:0 auto;padding:0 32px}
-.landing em.s{font-family:var(--ser);font-style:normal;font-weight:700}
+.landing em.s{font-family:inherit;font-style:normal;font-weight:inherit}
 .landing .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--body);font-weight:800;font-size:13px;letter-spacing:0;color:var(--ink);text-transform:uppercase}
 .landing .eyebrow::before{content:"";width:26px;height:2px;background:var(--hi);border-radius:2px}
 
@@ -112,8 +112,8 @@
 
 /* MANIFESTO */
 .landing .manifesto{text-align:center;padding:clamp(90px,13vw,170px) 0}
-.landing .manifesto p{font-family:var(--ser);font-size:clamp(30px,4.2vw,54px);line-height:1.24;color:var(--ink);max-width:18ch;margin:0 auto;font-style:normal;font-weight:700;text-wrap:balance}
-.landing .manifesto p b{font-style:normal;font-family:var(--disp);font-weight:800;color:var(--ink)}
+.landing .manifesto p{font-family:var(--disp);font-size:clamp(30px,4.2vw,54px);line-height:1.24;color:var(--ink);max-width:18ch;margin:0 auto;font-style:normal;font-weight:800;text-wrap:balance}
+.landing .manifesto p b{font-style:normal;font-family:inherit;font-weight:inherit;color:var(--ink)}
 .landing .manifesto .k{margin-bottom:34px;justify-content:center;display:flex}
 
 /* HOW */
@@ -209,7 +209,7 @@
 .landing .cta::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,var(--scrim-82),var(--scrim-72));z-index:2}
 .landing .cta-in{position:relative;z-index:3;text-align:center;padding:clamp(90px,13vw,170px) 32px}
 .landing .cta-in h2{font-size:clamp(38px,5.2vw,68px);color:var(--cream)}
-.landing .cta-in h2 em{color:var(--teal)}
+.landing .cta-in h2 em{color:var(--teal);font-family:var(--ser);font-weight:700}
 .landing .cta-in p{color:var(--on-dark-2);font-size:20px;margin:20px auto 34px;max-width:520px}
 /* the badges' centring inside this section is now applied directly on
    StoreBadges via a `className="justify-center"` prop (CTA.tsx) - see
