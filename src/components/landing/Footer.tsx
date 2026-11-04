@@ -1,4 +1,4 @@
-import { CookieMark } from "./CookieMark";
+import { CrumbifyLogo } from "./CrumbifyLogo";
 
 export function Footer() {
   return (
@@ -7,8 +7,7 @@ export function Footer() {
         <div className="fgrid">
           <div className="footer-brand">
             <div className="brand" style={{ display: "flex", alignItems: "center", gap: 11, fontFamily: "var(--disp)", fontWeight: 700 }}>
-              <CookieMark />
-              Crumbify
+              <CrumbifyLogo />
             </div>
             <p>Every bite tells a story.</p>
           </div>
