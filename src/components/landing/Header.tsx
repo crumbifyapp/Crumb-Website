@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CookieMark } from "./CookieMark";
+import { CrumbifyLogo } from "./CrumbifyLogo";
 
 const NAV_LINKS = [
   { href: "#how", label: "How it works" },
@@ -45,8 +45,7 @@ export function Header() {
       <header id="hdr" className={solid ? "solid" : undefined}>
         <nav className="nav">
           <a className="brand" href="#top">
-            <CookieMark />
-            Crumbify
+            <CrumbifyLogo />
           </a>
           <div className="nav-links">
             {NAV_LINKS.map((link) => (

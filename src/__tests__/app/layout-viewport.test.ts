@@ -16,7 +16,7 @@ import { rootMetadata } from "@/lib/seo";
 
 describe("root layout exports", () => {
   it("exports the cream theme colour as viewport.themeColor", () => {
-    expect(viewport.themeColor).toBe("#F4ECE1");
+    expect(viewport.themeColor).toBe("#E6F0EE");
   });
 
   it("exports rootMetadata as metadata", () => {
