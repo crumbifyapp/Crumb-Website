@@ -48,7 +48,7 @@ export default async function ReferralsPage({
         <Link href="/admin" className="text-sm opacity-60 hover:opacity-100">
           Back to admin
         </Link>
-        <h1 className="text-3xl font-bold text-[#E6C39B]">Referral codes</h1>
+        <h1 className="text-3xl font-bold text-crumb-teal">Referral codes</h1>
         <p className="text-sm opacity-60">
           Share links use the format {SITE_URL}/referral?code=CODE
         </p>
@@ -86,7 +86,7 @@ export default async function ReferralsPage({
         <EmptyState />
       ) : (
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-[#E6C39B]">Codes</h2>
+          <h2 className="text-xl font-semibold text-crumb-teal">Codes</h2>
           <div className="space-y-3 md:hidden">
             {stats.codes.map((row) => (
               <CodeCard key={row.code} row={row} />
@@ -107,8 +107,8 @@ export default async function ReferralsPage({
 
 function AddCodeForm() {
   return (
-    <section className="rounded-xl border border-[#E6C39B]/25 bg-black/25 p-4 sm:p-5">
-      <h2 className="text-lg font-semibold text-[#E6C39B]">Add referral code</h2>
+    <section className="rounded-xl border border-crumb-teal/25 bg-black/25 p-4 sm:p-5">
+      <h2 className="text-lg font-semibold text-crumb-teal">Add referral code</h2>
       <p className="mt-1 text-xs opacity-60">
         Register a code before sharing it, so it shows up here even before the first
         click.
@@ -120,7 +120,7 @@ function AddCodeForm() {
             name="creatorName"
             required
             placeholder="e.g. Jess Bakes"
-            className="rounded-md border border-white/15 bg-black/30 px-3 py-2 text-sm outline-none focus:border-[#E6C39B]/60"
+            className="rounded-md border border-white/15 bg-black/30 px-3 py-2 text-sm outline-none focus:border-crumb-teal/60"
           />
         </label>
         <label className="flex flex-col gap-1 text-sm">
@@ -130,7 +130,7 @@ function AddCodeForm() {
             required
             placeholder="e.g. JESS10"
             pattern="[A-Za-z0-9_-]{2,64}"
-            className="rounded-md border border-white/15 bg-black/30 px-3 py-2 text-sm font-mono outline-none focus:border-[#E6C39B]/60"
+            className="rounded-md border border-white/15 bg-black/30 px-3 py-2 text-sm font-mono outline-none focus:border-crumb-teal/60"
           />
         </label>
         <label className="flex flex-col gap-1 text-sm sm:col-span-2">
@@ -138,12 +138,12 @@ function AddCodeForm() {
           <input
             name="note"
             placeholder="Campaign, platform, anything worth remembering"
-            className="rounded-md border border-white/15 bg-black/30 px-3 py-2 text-sm outline-none focus:border-[#E6C39B]/60"
+            className="rounded-md border border-white/15 bg-black/30 px-3 py-2 text-sm outline-none focus:border-crumb-teal/60"
           />
         </label>
         <button
           type="submit"
-          className="mt-1 w-full rounded-md bg-[#E6C39B] px-4 py-2 text-sm font-semibold text-[#1A1208] transition hover:bg-[#d8b489] sm:col-span-2 sm:w-auto"
+          className="mt-1 w-full rounded-md bg-crumb-teal px-4 py-2 text-sm font-semibold text-crumb-on-teal transition hover:bg-crumb-teal-hover sm:col-span-2 sm:w-auto"
         >
           Add code
         </button>
@@ -155,7 +155,7 @@ function AddCodeForm() {
 function EmptyState() {
   return (
     <div className="rounded-lg border border-white/10 bg-black/20 p-6 text-sm">
-      <p className="font-semibold text-[#E6C39B]">No referral codes yet</p>
+      <p className="font-semibold text-crumb-teal">No referral codes yet</p>
       <p className="mt-2 opacity-70">
         Give each creator a link in the format {SITE_URL}/referral?code=THEIRCODE. Every
         unique visitor who follows it is counted once and redirected to the app store.
@@ -180,8 +180,8 @@ function PlatformBar({ row }: { row: { ios: number; android: number; other: numb
   }
   return (
     <div className="flex h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-      <div className="bg-[#5AC8FA]" style={{ width: `${(row.ios / total) * 100}%` }} />
-      <div className="bg-[#7ED957]" style={{ width: `${(row.android / total) * 100}%` }} />
+      <div className="bg-crumb-platform-ios" style={{ width: `${(row.ios / total) * 100}%` }} />
+      <div className="bg-crumb-platform-android" style={{ width: `${(row.android / total) * 100}%` }} />
       <div className="bg-white/30" style={{ width: `${(row.other / total) * 100}%` }} />
     </div>
   );
@@ -272,15 +272,15 @@ function CodeTable({ rows }: { rows: ReferralCodeStats[] }) {
     <table className="w-full min-w-[880px] border-collapse text-left text-sm">
       <thead>
         <tr className="border-b border-white/10 bg-black/20">
-          <th className="p-3 font-semibold text-[#E6C39B]">Code</th>
-          <th className="p-3 font-semibold text-[#E6C39B]">Creator</th>
-          <th className="p-3 font-semibold text-[#E6C39B]">Status</th>
-          <th className="p-3 font-semibold text-[#E6C39B]">Clicks</th>
-          <th className="p-3 font-semibold text-[#E6C39B]">Platform split</th>
-          <th className="p-3 font-semibold text-[#E6C39B]">Last 7d</th>
-          <th className="p-3 font-semibold text-[#E6C39B]">First / last click</th>
-          <th className="p-3 font-semibold text-[#E6C39B]">Share link</th>
-          <th className="p-3 font-semibold text-[#E6C39B]">Actions</th>
+          <th className="p-3 font-semibold text-crumb-teal">Code</th>
+          <th className="p-3 font-semibold text-crumb-teal">Creator</th>
+          <th className="p-3 font-semibold text-crumb-teal">Status</th>
+          <th className="p-3 font-semibold text-crumb-teal">Clicks</th>
+          <th className="p-3 font-semibold text-crumb-teal">Platform split</th>
+          <th className="p-3 font-semibold text-crumb-teal">Last 7d</th>
+          <th className="p-3 font-semibold text-crumb-teal">First / last click</th>
+          <th className="p-3 font-semibold text-crumb-teal">Share link</th>
+          <th className="p-3 font-semibold text-crumb-teal">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -364,11 +364,11 @@ function UnregisteredSection({ rows }: { rows: UnregisteredCodeStats[] }) {
                 name="creatorName"
                 required
                 placeholder="Creator name"
-                className="min-w-0 flex-1 rounded-md border border-white/15 bg-black/30 px-2.5 py-1.5 text-xs outline-none focus:border-[#E6C39B]/60"
+                className="min-w-0 flex-1 rounded-md border border-white/15 bg-black/30 px-2.5 py-1.5 text-xs outline-none focus:border-crumb-teal/60"
               />
               <button
                 type="submit"
-                className="shrink-0 rounded-md bg-[#E6C39B] px-3 py-1.5 text-xs font-semibold text-[#1A1208] hover:bg-[#d8b489]"
+                className="shrink-0 rounded-md bg-crumb-teal px-3 py-1.5 text-xs font-semibold text-crumb-on-teal hover:bg-crumb-teal-hover"
               >
                 Register this code
               </button>

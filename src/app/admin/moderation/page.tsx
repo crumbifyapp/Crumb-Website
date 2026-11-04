@@ -147,13 +147,13 @@ export default async function ModerationPage({
           <Link href="/admin" className="text-sm opacity-60 hover:opacity-100">
             Back to admin
           </Link>
-          <h1 className="mt-2 text-3xl font-bold text-[#E6C39B]">Moderation</h1>
+          <h1 className="mt-2 text-3xl font-bold text-crumb-teal">Moderation</h1>
           <p className="mt-1 text-sm opacity-60">Review reports, bans, and operator history.</p>
         </div>
       </header>
 
       {message && (
-        <p role="status" className="rounded-lg border border-[#E6C39B]/30 bg-[#E6C39B]/10 p-3 text-sm text-[#E6C39B]">
+        <p role="status" className="rounded-lg border border-crumb-teal/30 bg-crumb-teal/10 p-3 text-sm text-crumb-teal">
           {message}
         </p>
       )}
@@ -174,7 +174,7 @@ function SectionShell({
 }) {
   return (
     <section className="rounded-2xl border border-white/10 bg-black/20 p-5 sm:p-6">
-      <h2 className="text-xl font-semibold text-[#E6C39B]">{title}</h2>
+      <h2 className="text-xl font-semibold text-crumb-teal">{title}</h2>
       <div className="mt-4">{children}</div>
     </section>
   );
@@ -227,7 +227,7 @@ function ReportStatusFilterNav({ status }: { status: ReportStatusFilter }) {
         <Link
           key={candidate}
           href={buildModerationHref({ status: candidate })}
-          className="text-[#E6C39B] underline-offset-4 hover:underline"
+          className="text-crumb-teal underline-offset-4 hover:underline"
         >
           {STATUS_FILTER_LABELS[candidate]}
         </Link>
@@ -255,14 +255,14 @@ function ReportPagination({
   return (
     <nav aria-label="Report pages" className="mt-4 flex flex-wrap gap-3 border-t border-white/10 pt-4 text-sm">
       {before && (
-        <Link href={buildModerationHref({ status })} className="text-[#E6C39B] underline-offset-4 hover:underline">
+        <Link href={buildModerationHref({ status })} className="text-crumb-teal underline-offset-4 hover:underline">
           Newest reports
         </Link>
       )}
       {hasOlder && (
         <Link
           href={buildModerationHref({ status, before: oldest.created_at, beforeId: oldest.id })}
-          className="text-[#E6C39B] underline-offset-4 hover:underline"
+          className="text-crumb-teal underline-offset-4 hover:underline"
         >
           Older reports
         </Link>
@@ -303,7 +303,7 @@ function ReportCard({ report }: { report: ModerationReport }) {
             <input type="hidden" name="status" value={status} />
             <button
               type="submit"
-              className="min-h-[36px] rounded-md border border-[#E6C39B]/30 px-3 text-xs font-semibold text-[#E6C39B] hover:bg-[#E6C39B]/10"
+              className="min-h-[36px] rounded-md border border-crumb-teal/30 px-3 text-xs font-semibold text-crumb-teal hover:bg-crumb-teal/10"
             >
               Set {status}
             </button>
@@ -366,7 +366,7 @@ function AuditSection({ audit }: { audit: ModerationData['audit'] }) {
       ) : (
         <div className="overflow-x-auto rounded-xl border border-white/10">
           <table className="min-w-[760px] w-full text-left text-sm">
-            <thead className="border-b border-white/10 bg-black/20 text-xs text-[#E6C39B]">
+            <thead className="border-b border-white/10 bg-black/20 text-xs text-crumb-teal">
               <tr>
                 <th className="p-3 font-semibold">Actor</th>
                 <th className="p-3 font-semibold">Action</th>

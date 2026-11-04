@@ -92,7 +92,7 @@ export default function SignInClient({
     <main className="flex min-h-screen items-center justify-center p-6">
       <div className="w-full max-w-sm space-y-6 rounded-2xl border border-white/10 bg-black/20 p-8">
         <div>
-          <h1 className="text-2xl font-bold text-[#E6C39B]">Admin sign-in</h1>
+          <h1 className="text-2xl font-bold text-crumb-teal">Admin sign-in</h1>
           <p className="mt-1 text-sm opacity-70">
             OTP via Supabase. Only allow-listed emails reach /admin.
           </p>
@@ -116,12 +116,12 @@ export default function SignInClient({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
-              className="w-full rounded-lg border border-white/10 bg-black/40 p-3 text-sm outline-none focus:border-[#E6C39B]"
+              className="w-full rounded-lg border border-white/10 bg-black/40 p-3 text-sm outline-none focus:border-crumb-teal"
             />
             <button
               type="submit"
               disabled={status === 'sending'}
-              className="w-full rounded-lg bg-[#E6C39B] p-3 text-sm font-semibold text-[#1A1208] disabled:opacity-50"
+              className="w-full rounded-lg bg-crumb-teal p-3 text-sm font-semibold text-crumb-on-teal disabled:opacity-50"
             >
               {status === 'sending' ? 'Sending…' : 'Send code'}
             </button>
@@ -142,12 +142,12 @@ export default function SignInClient({
               value={token}
               onChange={(e) => setToken(e.target.value)}
               placeholder="218138"
-              className="w-full rounded-lg border border-white/10 bg-black/40 p-3 text-center text-xl tracking-widest outline-none focus:border-[#E6C39B]"
+              className="w-full rounded-lg border border-white/10 bg-black/40 p-3 text-center text-xl outline-none focus:border-crumb-teal"
             />
             <button
               type="submit"
               disabled={status === 'verifying'}
-              className="w-full rounded-lg bg-[#E6C39B] p-3 text-sm font-semibold text-[#1A1208] disabled:opacity-50"
+              className="w-full rounded-lg bg-crumb-teal p-3 text-sm font-semibold text-crumb-on-teal disabled:opacity-50"
             >
               {status === 'verifying' ? 'Verifying…' : 'Sign in'}
             </button>
