@@ -110,7 +110,7 @@
 
 /* MANIFESTO */
 .landing .manifesto{text-align:center;padding:clamp(90px,13vw,170px) 0}
-.landing .manifesto p{font-family:var(--disp);font-size:clamp(30px,4.2vw,54px);line-height:1.24;color:var(--ink);max-width:18ch;margin:0 auto;font-style:normal;font-weight:800;text-wrap:balance}
+.landing .manifesto p{font-family:var(--disp);font-size:clamp(30px,4.2vw,54px);line-height:1.24;color:var(--ink);max-width:20ch;margin:0 auto;font-style:normal;font-weight:800;text-wrap:balance}
 .landing .manifesto p b{font-style:normal;font-family:inherit;font-weight:inherit;color:var(--ink)}
 .landing .manifesto .k{margin-bottom:34px;justify-content:center;display:flex}
 
