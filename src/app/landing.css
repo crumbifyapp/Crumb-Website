@@ -1,6 +1,6 @@
 :root{
   --cream:#E6F0EE; --cream-2:#D9E8E4; --card:#FFFFFF; --line:#CFE0DC; --ink:#27180E; --ink-2:#4A3A30; --ink-3:#6B827C;
-  --hi:#D8663F; --blue:#4d86c4; --teal:#79B8AD; --teal-2:#4E8C81;
+  --blue:#4d86c4; --teal:#79B8AD; --teal-2:#4E8C81;
   --on-dark:#FFFFFF; --on-dark-2:#C2D6CF; --on-dark-3:#8AA69C; --line-dark:rgba(255,255,255,.14); --ink-deep:#140C07;
   --cream-a0:rgba(230,240,238,0); --cream-a50:rgba(230,240,238,.5); --cream-a80:rgba(230,240,238,.8); --cream-a97:rgba(230,240,238,.97);
   --card-a90:rgba(255,255,255,.9); --blue-a20:rgba(77,134,196,.2);
@@ -18,7 +18,7 @@
 .landing .wrap{max-width:var(--wrap);margin:0 auto;padding:0 32px}
 .landing em.s{font-family:inherit;font-style:normal;font-weight:inherit}
 .landing .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--body);font-weight:800;font-size:13px;letter-spacing:0;color:var(--ink);text-transform:uppercase}
-.landing .eyebrow::before{content:"";width:26px;height:2px;background:var(--hi);border-radius:2px}
+.landing .eyebrow::before{content:"";width:26px;height:2px;background:var(--teal-2);border-radius:2px}
 
 .landing .reveal{opacity:0;transform:translateY(40px);filter:blur(6px);transition:opacity 1.05s cubic-bezier(.16,1,.3,1),transform 1.05s cubic-bezier(.16,1,.3,1),filter 1.05s ease}
 .landing .reveal.in{opacity:1;transform:none;filter:none}
@@ -43,7 +43,6 @@
 .landing .logo{display:block;height:56px;width:auto;flex:none}
 .landing .footer-brand .logo{height:96px}
 .landing .puck{border-radius:50%;background:var(--ink);color:var(--cream);display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:800;line-height:1;flex:none;width:46px;height:46px;font-size:18px}
-.landing .puck.hi{background:var(--hi);color:#fff}
 .landing .av{border-radius:50%;flex:none;border:2px solid var(--card);background:var(--teal-2)}
 .landing .take{font-family:var(--ser);font-style:normal;font-weight:700;color:var(--ink-2)}
 .landing .ph{background:repeating-linear-gradient(48deg,var(--cream-2),var(--cream-2) 11px,var(--line) 11px,var(--line) 22px);position:relative}
@@ -60,7 +59,7 @@
 .landing .brand:hover{color:var(--ink)}
 .landing .nav-links{display:flex;align-items:center;gap:32px;font-weight:600;font-size:15px;color:var(--ink-2)}
 .landing .nav-links a{color:inherit;position:relative;text-decoration:none}
-.landing .nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-5px;height:2px;background:var(--hi);border-radius:2px;transition:right .3s cubic-bezier(.16,1,.3,1)}
+.landing .nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-5px;height:2px;background:var(--teal-2);border-radius:2px;transition:right .3s cubic-bezier(.16,1,.3,1)}
 .landing .nav-links a:hover{color:var(--ink)}.landing .nav-links a:hover::after{right:0}
 .landing .nav-cta{display:flex;align-items:center;gap:16px}
 .landing .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:9px;z-index:1001}
@@ -179,7 +178,7 @@
 .landing .match-top{display:flex;align-items:center;gap:16px;margin-bottom:10px}
 .landing .match-top .av{width:62px;height:62px}
 .landing .match-line{flex:1;height:3px;border-radius:2px;background:repeating-linear-gradient(90deg,var(--teal-2),var(--teal-2) 7px,transparent 7px,transparent 13px)}
-.landing .match-pct{font-family:var(--disp);font-weight:800;font-size:60px;color:var(--hi);line-height:1;margin-top:8px}
+.landing .match-pct{font-family:var(--disp);font-weight:800;font-size:60px;color:var(--ink);line-height:1;margin-top:8px}
 .landing .match-pct small{font-family:var(--body);font-weight:700;font-size:16px;color:var(--ink-2);display:block;margin-top:4px}
 .landing .reco{margin-top:26px;display:flex;flex-direction:column;gap:11px}
 .landing .reco .r{display:flex;align-items:center;gap:14px;background:var(--cream);border:1px solid var(--line);border-radius:16px;padding:11px 13px}
@@ -241,7 +240,7 @@
 .landing .founding{background:var(--cream-2)}
 .landing .founding .feat-copy .founding-perks{margin-top:26px;display:flex;flex-direction:column;gap:12px}
 .landing .founding .feat-copy .founding-perks li{display:flex;align-items:center;gap:10px;color:var(--ink-2);font-weight:600;font-size:15px}
-.landing .founding .feat-copy .founding-perks li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--hi);flex:none}
+.landing .founding .feat-copy .founding-perks li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--teal-2);flex:none}
 .landing .founding-card .frow{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .landing .founding-card .flabel{font-weight:700;font-size:13px;color:var(--ink-2)}
 .landing .founding-card .fcount{font-family:var(--disp);font-weight:800;font-size:16px;color:var(--ink)}
