@@ -1,10 +1,8 @@
 import Image from "next/image";
-import { HERE_POSITION, scoreColor, spots } from "./data";
+import { scoreColor, spots } from "./data";
 import { projectToPercent } from "./mapProjection";
 
 export function HeroMap() {
-  const herePos = projectToPercent(HERE_POSITION[0], HERE_POSITION[1]);
-
   return (
     <div id="lmap" aria-hidden="true">
       <Image
@@ -15,13 +13,6 @@ export function HeroMap() {
         sizes="100vw"
         style={{ objectFit: "cover", objectPosition: "center" }}
       />
-      <div
-        className="here2"
-        style={{ left: `${herePos.xPct}%`, top: `${herePos.yPct}%` }}
-      >
-        <div className="r" />
-        <div className="d" />
-      </div>
       {spots.map((s, i) => {
         const pos = projectToPercent(s.lat, s.lng);
         return (

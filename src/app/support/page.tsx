@@ -13,24 +13,24 @@ export const metadata: Metadata = pageMetadata({
 const headingStyle: React.CSSProperties = {
   fontSize: 20,
   fontWeight: 700,
-  color: "#F4ECDF",
+  color: "var(--color-crumb-text)",
   marginBottom: 0,
   lineHeight: 1.3,
   letterSpacing: 0,
 };
 
 const cardStyle: React.CSSProperties = {
-  background: "#241712",
-  border: "1px solid rgba(230,195,155,0.15)",
+  background: "var(--color-crumb-card)",
+  border: "1px solid var(--color-crumb-teal-line)",
   borderRadius: 16,
   padding: "32px",
   marginBottom: 20,
-  boxShadow: "0 2px 8px rgba(26,18,8,0.25)",
+  boxShadow: "0 2px 8px var(--color-crumb-shadow)",
 };
 
 const faqQuestionStyle: React.CSSProperties = {
   fontWeight: 700,
-  color: "#F4ECDF",
+  color: "var(--color-crumb-text)",
   fontSize: 16,
   marginBottom: 8,
   lineHeight: 1.4,
@@ -38,7 +38,7 @@ const faqQuestionStyle: React.CSSProperties = {
 };
 
 const faqAnswerStyle: React.CSSProperties = {
-  color: "#C4B09A",
+  color: "var(--color-crumb-text-soft)",
   fontSize: 15,
   lineHeight: 1.65,
   margin: 0,
@@ -77,7 +77,7 @@ export default function SupportPage() {
       <p
         style={{
           fontSize: 18,
-          color: "#C4B09A",
+          color: "var(--color-crumb-text-soft)",
           marginBottom: 32,
           marginTop: -8,
           lineHeight: 1.5,
@@ -107,7 +107,7 @@ export default function SupportPage() {
             marginTop: 12,
             marginBottom: 20,
             fontSize: 15,
-            color: "#9B8272",
+            color: "var(--color-crumb-text-soft)",
             lineHeight: 1.5,
           }}
         >

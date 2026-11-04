@@ -5,7 +5,7 @@ const contactLinkStyle: React.CSSProperties = {
   alignItems: "center",
   gap: 12,
   borderRadius: 12,
-  border: "1px solid rgba(230,195,155,0.12)",
+  border: "1px solid var(--color-crumb-teal-line)",
   padding: "16px",
   textDecoration: "none",
   background: "transparent",
@@ -15,7 +15,7 @@ const contactIconWrapStyle: React.CSSProperties = {
   width: 40,
   height: 40,
   borderRadius: 10,
-  background: "rgba(230,195,155,0.12)",
+  background: "var(--color-crumb-teal-wash)",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -25,14 +25,14 @@ const contactIconWrapStyle: React.CSSProperties = {
 const contactLabelStyle: React.CSSProperties = {
   fontSize: 14,
   fontWeight: 700,
-  color: "#F4ECDF",
+  color: "var(--color-crumb-text)",
   marginBottom: 2,
   letterSpacing: 0,
 };
 
 const contactSubStyle: React.CSSProperties = {
   fontSize: 14,
-  color: "#C4B09A",
+  color: "var(--color-crumb-text-soft)",
 };
 
 export function ContactLinks() {
@@ -42,7 +42,7 @@ export function ContactLinks() {
         href="mailto:support@crumbify.co.uk"
         style={contactLinkStyle}
         onMouseEnter={(e) => {
-          (e.currentTarget as HTMLAnchorElement).style.background = "rgba(230,195,155,0.07)";
+          (e.currentTarget as HTMLAnchorElement).style.background = "var(--color-crumb-teal-tint)";
         }}
         onMouseLeave={(e) => {
           (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
@@ -54,7 +54,7 @@ export function ContactLinks() {
             height="20"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#E6C39B"
+            stroke="var(--color-crumb-teal)"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -73,7 +73,7 @@ export function ContactLinks() {
         href="mailto:contact@crumbify.co.uk"
         style={contactLinkStyle}
         onMouseEnter={(e) => {
-          (e.currentTarget as HTMLAnchorElement).style.background = "rgba(230,195,155,0.07)";
+          (e.currentTarget as HTMLAnchorElement).style.background = "var(--color-crumb-teal-tint)";
         }}
         onMouseLeave={(e) => {
           (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
@@ -85,7 +85,7 @@ export function ContactLinks() {
             height="20"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#E6C39B"
+            stroke="var(--color-crumb-teal)"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -106,7 +106,7 @@ export function ContactLinks() {
         rel="noopener noreferrer"
         style={contactLinkStyle}
         onMouseEnter={(e) => {
-          (e.currentTarget as HTMLAnchorElement).style.background = "rgba(230,195,155,0.07)";
+          (e.currentTarget as HTMLAnchorElement).style.background = "var(--color-crumb-teal-tint)";
         }}
         onMouseLeave={(e) => {
           (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
@@ -117,7 +117,7 @@ export function ContactLinks() {
             width="18"
             height="18"
             viewBox="0 0 24 24"
-            fill="#E6C39B"
+            fill="var(--color-crumb-teal)"
           >
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
           </svg>

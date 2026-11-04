@@ -96,22 +96,22 @@ export function AppShareLanding({
   const showFallbackCta = !showOpeningMessage;
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-[#F4ECE1] px-6 py-16 text-center text-[#1A1208]">
-      <p className="mb-2 text-sm text-[#8a7a68]">{kicker}</p>
+    <div className="flex min-h-screen flex-col items-center justify-center bg-crumb-light-bg px-6 py-16 text-center text-crumb-light-ink">
+      <p className="mb-2 text-sm text-crumb-light-ink-soft">{kicker}</p>
       <h1 className="mb-6 max-w-md text-2xl font-semibold sm:text-3xl">{heading}</h1>
 
       {showOpeningMessage && (
-        <p className="text-base text-[#4a3f33]" data-testid="opening-message">
+        <p className="text-base text-crumb-light-ink-soft" data-testid="opening-message">
           Opening in the Crumbify app...
         </p>
       )}
 
       {showFallbackCta && (
         <div className="flex flex-col items-center gap-6" data-testid="fallback-cta">
-          <p className="max-w-sm text-base text-[#4a3f33]">{description}</p>
+          <p className="max-w-sm text-base text-crumb-light-ink-soft">{description}</p>
           <button
             type="button"
-            className="rounded-[14px] bg-[#E6C39B] px-[22px] py-[13px] text-[15px] font-bold text-[#1A1208] shadow-[0_5px_0_#C9A077] transition-[transform,box-shadow] duration-75 active:translate-y-1 active:shadow-[0_1px_0_#C9A077]"
+            className="rounded-[14px] bg-crumb-teal px-[22px] py-[13px] text-[15px] font-bold text-crumb-on-teal shadow-[0_5px_0_var(--color-crumb-light-teal-ledge)] transition-[transform,box-shadow] duration-75 active:translate-y-1 active:shadow-[0_1px_0_var(--color-crumb-light-teal-ledge)]"
             onClick={() => attemptCrumbifyDeepLink(pathSegment, id)}
             data-testid="open-in-app-button"
           >

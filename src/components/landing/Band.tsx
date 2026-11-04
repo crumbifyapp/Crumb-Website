@@ -12,7 +12,6 @@ export function Band() {
         />
       </div>
       <div className="band-cap">
-        <span className="eyebrow k reveal">Crumbify</span>
         <p className="reveal">Every bite tells a story.</p>
       </div>
     </section>

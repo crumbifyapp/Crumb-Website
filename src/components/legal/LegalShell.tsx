@@ -31,7 +31,7 @@ export function LegalShell({ title, updated, children }: LegalShellProps) {
     <main
       className={`${fredoka.variable} ${nunito.variable}`}
       style={{
-        background: "#1A1208",
+        background: "var(--color-crumb-bg)",
         minHeight: "100vh",
         fontFamily: "var(--font-nunito-legal), -apple-system, BlinkMacSystemFont, sans-serif",
       }}
@@ -53,7 +53,7 @@ export function LegalShell({ title, updated, children }: LegalShellProps) {
             marginTop: 24,
             fontSize: 36,
             fontWeight: 600,
-            color: "#F4ECDF",
+            color: "var(--color-crumb-text)",
             lineHeight: 1.2,
             fontFamily: "var(--font-fredoka-legal), -apple-system, BlinkMacSystemFont, sans-serif",
             letterSpacing: 0,
@@ -67,7 +67,7 @@ export function LegalShell({ title, updated, children }: LegalShellProps) {
             style={{
               marginTop: 8,
               fontSize: 13,
-              color: "#9B8272",
+              color: "var(--color-crumb-muted)",
               fontFamily: "var(--font-nunito-legal), sans-serif",
             }}
           >
@@ -78,7 +78,7 @@ export function LegalShell({ title, updated, children }: LegalShellProps) {
         <div
           style={{
             marginTop: 40,
-            color: "#C4B09A",
+            color: "var(--color-crumb-text-soft)",
             fontSize: 16,
             lineHeight: 1.65,
             fontFamily: "var(--font-nunito-legal), -apple-system, BlinkMacSystemFont, sans-serif",

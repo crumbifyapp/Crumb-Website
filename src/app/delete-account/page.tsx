@@ -12,7 +12,7 @@ export const metadata: Metadata = pageMetadata({
 const headingStyle: React.CSSProperties = {
   fontSize: 20,
   fontWeight: 700,
-  color: "#F4ECDF",
+  color: "var(--color-crumb-text)",
   marginBottom: 12,
   marginTop: 0,
   lineHeight: 1.3,
@@ -20,7 +20,7 @@ const headingStyle: React.CSSProperties = {
 };
 
 const bodyStyle: React.CSSProperties = {
-  color: "#C4B09A",
+  color: "var(--color-crumb-text-soft)",
   fontSize: 16,
   lineHeight: 1.65,
   marginBottom: 12,
@@ -36,7 +36,7 @@ const listStyle: React.CSSProperties = {
 };
 
 const linkStyle: React.CSSProperties = {
-  color: "#E6C39B",
+  color: "var(--color-crumb-teal)",
   textDecoration: "underline",
   textUnderlineOffset: 3,
 };
@@ -46,12 +46,12 @@ const sectionStyle: React.CSSProperties = {
 };
 
 const noteBoxStyle: React.CSSProperties = {
-  background: "#241712",
-  border: "1px solid rgba(230,195,155,0.15)",
+  background: "var(--color-crumb-card)",
+  border: "1px solid var(--color-crumb-teal-line)",
   borderRadius: 12,
   padding: "16px 20px",
   marginTop: 12,
-  color: "#C4B09A",
+  color: "var(--color-crumb-text-soft)",
   fontSize: 15,
   lineHeight: 1.6,
 };

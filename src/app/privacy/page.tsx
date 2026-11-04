@@ -11,7 +11,7 @@ export const metadata: Metadata = pageMetadata({
 const headingStyle: React.CSSProperties = {
   fontSize: 20,
   fontWeight: 700,
-  color: "#F4ECDF",
+  color: "var(--color-crumb-text)",
   marginBottom: 12,
   marginTop: 0,
   lineHeight: 1.3,
@@ -19,7 +19,7 @@ const headingStyle: React.CSSProperties = {
 };
 
 const bodyStyle: React.CSSProperties = {
-  color: "#C4B09A",
+  color: "var(--color-crumb-text-soft)",
   fontSize: 16,
   lineHeight: 1.65,
   marginBottom: 12,
@@ -35,12 +35,12 @@ const listStyle: React.CSSProperties = {
 };
 
 const strongStyle: React.CSSProperties = {
-  color: "#F4ECDF",
+  color: "var(--color-crumb-text)",
   fontWeight: 700,
 };
 
 const linkStyle: React.CSSProperties = {
-  color: "#E6C39B",
+  color: "var(--color-crumb-teal)",
   textDecoration: "underline",
   textUnderlineOffset: 3,
 };
@@ -390,7 +390,7 @@ export default function PrivacyPage() {
           Separately, clearly labelled &quot;Sponsored&quot; restaurant cards may appear
           in the App. These are not personalised; they are chosen by simple
           rotation from a campaign list rather than from your data, carry a
-          gold &quot;Sponsored&quot; label, and involve no per-user tracking. They appear
+          &quot;Sponsored&quot; label, and involve no per-user tracking. They appear
           for everyone, about half as often for Crumbify Premium members.
         </p>
       </section>
