@@ -61,7 +61,8 @@ The landing is a 1:1 Next.js port of the approved design in `C:\Users\aliba\Down
 - Dark (legal, support, admin, success): bg `#12291F`, alt `#0C1D16`, card `#1F4634`, raised card `#285443`, text `#FFFFFF`, soft text `#C2D6CF`, muted `#8AA69C` (page background only, 4.0 on a card), line `#2C5745`.
 - Teal `#79B8AD` is the brand fill, with text `#27180E` on it. Never white text on teal (2.26:1). Never teal text on a light background. Teal text is fine on dark surfaces.
 - Gold is for Premium only and the website has no Premium surface, so gold is not used on this site at all.
-- `--hi` `#D8663F` is only 3.07 on the light background: fills and large display text only.
+- Orange `#D8663F` is retired: it is not in the approved palette (Design review, 4 Nov 2026). Accent details use `--teal-2` `#4E8C81`.
+- Heading accents on light pages are plain ink in the heading's own font, with no colour or font change.
 - Logo: full lockup at every size (D331) via `CrumbifyLogo` (inline SVG, `currentColor`: chocolate on light, white on dark). `public/images/crumbify-logo.png` is the PNG for structured data.
 - Tagline: "Every bite tells a story."
 - Score pucks use the red→yellow→green `scoreColor()` ramp.
