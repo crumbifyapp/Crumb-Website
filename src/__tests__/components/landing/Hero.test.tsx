@@ -36,4 +36,18 @@ describe("Hero", () => {
     render(<Hero />);
     expect(screen.getByTestId("store-badges")).toBeInTheDocument();
   });
+
+  it("renders the map credit on the hero, outside the aria-hidden map", () => {
+    const { container } = render(<Hero />);
+    const credit = container.querySelector("p.map-credit");
+    expect(credit).not.toBeNull();
+    expect(credit?.textContent).toBe("© OpenStreetMap contributors, © CARTO");
+    expect(
+      credit?.querySelector('a[href="https://www.openstreetmap.org/copyright"]')?.textContent,
+    ).toBe("OpenStreetMap");
+    expect(credit?.querySelector('a[href="https://carto.com/attribution/"]')?.textContent).toBe(
+      "CARTO",
+    );
+    expect(credit?.closest('[aria-hidden="true"]')).toBeNull();
+  });
 });
