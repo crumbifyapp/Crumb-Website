@@ -14,7 +14,7 @@ test.describe("Homepage sections", () => {
     await home.goto();
 
     await expect(home.header).toBeVisible();
-    await expect(home.navBrand).toContainText("Crumbify");
+    await expect(home.navBrand.getByRole("img", { name: "Crumbify" })).toBeVisible();
     await expect(home.navLinks).toHaveText([
       "How it works",
       "The feed",
