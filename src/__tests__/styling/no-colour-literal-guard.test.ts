@@ -55,6 +55,7 @@ const RETIRED_HEX = [
   "8A7A62", "8A7A68", "4A3F33", "C4B09A", "9B8272", "241712", "D8B489", "0E0805", "2A2118", "8A7060",
   "E0D5C9", "EDE2D5", "C4513D", "E5D6C2", "CDBFAD", "B6A488", "8F7D63", "D8CAB3", "3A2C1A", "6F6049",
   "4D3F2C", "6B5B45", "EADFCF", "E1D3BF", "2A1D10", "221708", "D4C9BC", "8B7355", "3D2B1F",
+  "D8663F",
 ] as const;
 
 const RETIRED_RGB_TRIPLETS: ReadonlyArray<readonly [number, number, number]> = [
@@ -64,6 +65,7 @@ const RETIRED_RGB_TRIPLETS: ReadonlyArray<readonly [number, number, number]> = [
   [40, 26, 10],
   [139, 115, 85],
   [255, 253, 249],
+  [216, 102, 63],
 ];
 
 /** Retired hex (any case, an alpha suffix still counts) or a retired triplet in rgb()/rgba(). */

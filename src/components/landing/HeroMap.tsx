@@ -19,7 +19,6 @@ export function HeroMap() {
         className="here2"
         style={{ left: `${herePos.xPct}%`, top: `${herePos.yPct}%` }}
       >
-        <div className="r" />
         <div className="d" />
       </div>
       {spots.map((s, i) => {
