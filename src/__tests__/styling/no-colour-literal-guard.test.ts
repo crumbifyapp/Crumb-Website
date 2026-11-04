@@ -48,7 +48,7 @@ type Hit = { readonly line: number; readonly literal: string };
  * arbitrary value, still counts). `rgba(${r}` and `rgb(var(--x)` are not literals.
  */
 const COLOUR_LITERAL_RE =
-  /(?<![&\w])#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{4}|[0-9a-fA-F]{3})\b|(?<![A-Za-z])(?:rgba?|hsla?)\(\s*[\d.]/g;
+  /(?<![&\w])#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{4}|[0-9a-fA-F]{3})\b|(?<![A-Za-z])(?:rgba?|hsla?)\(\s*[\d.]/gi;
 
 const RETIRED_HEX = [
   "E6C39B", "C9A077", "F4ECE1", "F4ECDF", "EFE5D8", "EFE5D6", "FFFDF9", "E4D8C7", "1A1208", "5A4C3A",
@@ -259,6 +259,10 @@ describe("check 1 fixtures", () => {
       "rgb(1",
       "hsl(1",
     ]);
+  });
+
+  it("flags an uppercase RGBA() function name", () => {
+    expect(literals("const a = 'shadow-[0_1px_0_RGBA(1,2,3,.4)]';")).toEqual(["RGBA(1"]);
   });
 
   it("flags a template head that hard-codes the channels", () => {
