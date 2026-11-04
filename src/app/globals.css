@@ -1,16 +1,37 @@
 @import "tailwindcss";
 
-@theme inline {
-  /* Palette */
-  --color-crumb-ink-deep: #0E0805;
-  --color-crumb-ink: #1A1208;
-  --color-crumb-ink-soft: #2A2118;
-  --color-crumb-ink-muted: #8A7060;
-  --color-crumb-cream: #E0D5C9;
-  --color-crumb-cream-soft: #EDE2D5;
-  --color-crumb-gold: #E6C39B;
-  --color-crumb-gold-deep: #C9A077;
-  --color-crumb-red: #C4513D;
+@theme inline static {
+  /* Palette: rebrand 1.4.2. Dark surfaces (legal, support, admin, founding success) */
+  --color-crumb-bg: #12291F;
+  --color-crumb-bg-2: #0C1D16;
+  --color-crumb-card: #1F4634;
+  --color-crumb-card-hi: #285443;
+  --color-crumb-text: #FFFFFF;
+  --color-crumb-text-soft: #C2D6CF;
+  --color-crumb-muted: #8AA69C;
+  --color-crumb-line: #2C5745;
+  --color-crumb-teal: #79B8AD;
+  --color-crumb-teal-hover: #5FA195;
+  --color-crumb-teal-deep: #3E7A70;
+  --color-crumb-on-teal: #27180E;
+  --color-crumb-danger: #F29A86;
+  --color-crumb-teal-tint: rgba(121, 184, 173, 0.07);
+  --color-crumb-teal-wash: rgba(121, 184, 173, 0.12);
+  --color-crumb-teal-line: rgba(121, 184, 173, 0.15);
+  --color-crumb-shadow: rgba(0, 0, 0, 0.25);
+  --color-crumb-platform-ios: #5AC8FA;
+  --color-crumb-platform-android: #7ED957;
+
+  /* Light surfaces outside the landing (not-found, share landing pages) */
+  --color-crumb-light-bg: #E6F0EE;
+  --color-crumb-light-bg-2: #D9E8E4;
+  --color-crumb-light-card: #FFFFFF;
+  --color-crumb-light-ink: #27180E;
+  --color-crumb-light-ink-soft: #4A3A30;
+  --color-crumb-light-muted: #6B827C;
+  --color-crumb-light-line: #CFE0DC;
+  --color-crumb-light-teal-ledge: #4E8C81;
+  --color-crumb-light-danger: #B23A26;
 
   /* Fonts — system stack matching the Crumbify mobile app (SF Pro on iOS, Helvetica/system on web) */
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -21,7 +42,7 @@
 }
 
 html { scroll-behavior: auto; } /* Lenis handles */
-html, body { background: #0E0805; color: #E0D5C9; }
+html, body { background: var(--color-crumb-bg); color: var(--color-crumb-text); }
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -93,11 +114,6 @@ html[data-custom-cursor="on"] [contenteditable] {
   to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
-@keyframes f-pulse {
-  0%, 100% { border-color: rgba(230, 195, 155, 0.15); }
-  50% { border-color: rgba(230, 195, 155, 0.35); }
-}
-
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.4; }
@@ -117,23 +133,6 @@ html[data-custom-cursor="on"] [contenteditable] {
   animation-play-state: paused;
 }
 
-/* ── Animated gradient border for wrapped cards ── */
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-@keyframes rotate-gradient {
-  from { --angle: 0deg; }
-  to { --angle: 360deg; }
-}
-
-.animated-border-gradient {
-  background: conic-gradient(from var(--angle), transparent 40%, rgba(139, 115, 85, 0.5) 50%, transparent 60%);
-  animation: rotate-gradient 4s linear infinite;
-}
-
 /* ── Wave dividers ── */
 .wave-divider {
   width: 100%;
@@ -145,14 +144,6 @@ html[data-custom-cursor="on"] [contenteditable] {
   display: block;
   width: 100%;
   height: 50px;
-}
-
-/* ── Receipt paper effect ── */
-.receipt-edge {
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='12' viewBox='0 0 100 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 12 Q5 0 10 12 Q15 0 20 12 Q25 0 30 12 Q35 0 40 12 Q45 0 50 12 Q55 0 60 12 Q65 0 70 12 Q75 0 80 12 Q85 0 90 12 Q95 0 100 12' fill='%23E0D5C9'/%3E%3C/svg%3E");
-  background-repeat: repeat-x;
-  background-size: 100px 12px;
-  height: 12px;
 }
 
 /* ── Bento card hover glow ── */
@@ -170,22 +161,22 @@ html[data-custom-cursor="on"] [contenteditable] {
 }
 
 ::-webkit-scrollbar-track {
-  background: #E0D5C9;
+  background: var(--color-crumb-line);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D4C9BC;
+  background: var(--color-crumb-muted);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #8B7355;
+  background: var(--color-crumb-teal);
 }
 
 /* ── Selection color ── */
 ::selection {
-  background: rgba(230, 195, 155, 0.4);
-  color: #3D2B1F;
+  background: rgba(121, 184, 173, 0.4);
+  color: var(--color-crumb-on-teal);
 }
 
 @media (prefers-reduced-motion: reduce) {
