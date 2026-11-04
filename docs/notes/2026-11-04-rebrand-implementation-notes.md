@@ -1,0 +1,78 @@
+# Rebrand 1.4.2: implementation notes (4 Nov 2026)
+
+Brief: `../hq/requests/2026-10-30-website-rebrand-colours.md`. Palette source:
+`../design/outbox/2026-10-29-rebrand/PALETTE-MAP.md`. Branch: `rebrand/1.4.2-colours`. Merge waits for the
+owner's word, on the day 1.4.2 is live.
+
+## Token spec (the single source for every writer)
+
+Token names are RENAMED to their roles (the brief leaves this to the website session). Reason: once the literals
+move onto tokens, keeping the old names would leave `crumb-cream` meaning white and `crumb-ink` meaning a green card
+on about 100 call sites. Only about 8 call sites used the old names.
+
+`src/app/globals.css` declares these with `@theme inline static` so that every token is emitted on `:root`.
+Tailwind otherwise drops unused variables, and the legal pages read them through inline styles with `var()`.
+
+### Dark surfaces (legal, support, admin, founding-member success)
+
+| Token | Value | Replaces |
+|---|---|---|
+| `--color-crumb-bg` | #12291F | crumb-ink-deep, #0E0805, #1A1208 as a page background |
+| `--color-crumb-bg-2` | #0C1D16 | new |
+| `--color-crumb-card` | #1F4634 | crumb-ink, #241712 |
+| `--color-crumb-card-hi` | #285443 | crumb-ink-soft |
+| `--color-crumb-text` | #FFFFFF | crumb-cream, #E0D5C9, #F4ECDF, #F4ECE1 as text |
+| `--color-crumb-text-soft` | #C2D6CF | crumb-cream-soft, #C4B09A |
+| `--color-crumb-muted` | #8AA69C | crumb-ink-muted, #9B8272 |
+| `--color-crumb-line` | #2C5745 | new |
+| `--color-crumb-teal` | #79B8AD | crumb-gold, #E6C39B |
+| `--color-crumb-teal-hover` | #5FA195 | #C9A077 and #D8B489 as hover colours |
+| `--color-crumb-teal-deep` | #3E7A70 | crumb-gold-deep, #C9A077 as a ledge |
+| `--color-crumb-on-teal` | #27180E | #1A1208 as text on a gold fill |
+| `--color-crumb-danger` | #F29A86 | crumb-red |
+| `--color-crumb-teal-tint` | rgba(121,184,173,0.07) | rgba(230,195,155,0.07) |
+| `--color-crumb-teal-wash` | rgba(121,184,173,0.12) | rgba(230,195,155,0.12) as a fill |
+| `--color-crumb-teal-line` | rgba(121,184,173,0.15) | rgba(230,195,155,0.12 or 0.15) as a border |
+| `--color-crumb-shadow` | rgba(0,0,0,0.25) | rgba(26,18,8,0.25) |
+| `--color-crumb-platform-ios` | #5AC8FA | unchanged value, moved onto a token |
+| `--color-crumb-platform-android` | #7ED957 | unchanged value, moved onto a token |
+
+### Light surfaces outside the landing (not-found, share landing pages)
+
+| Token | Value | Replaces |
+|---|---|---|
+| `--color-crumb-light-bg` | #E6F0EE | #F4ECE1 |
+| `--color-crumb-light-bg-2` | #D9E8E4 | new |
+| `--color-crumb-light-card` | #FFFFFF | new |
+| `--color-crumb-light-ink` | #27180E | #1A1208 |
+| `--color-crumb-light-ink-soft` | #4A3A30 | #4A3F33, #8A7A68 (muted cannot carry body text) |
+| `--color-crumb-light-muted` | #6B827C | new, icons and hints only |
+| `--color-crumb-light-line` | #CFE0DC | new |
+| `--color-crumb-light-teal-ledge` | #4E8C81 | #C9A077 as a button ledge |
+| `--color-crumb-light-danger` | #B23A26 | new |
+
+Teal buttons on light pages use `bg-crumb-teal text-crumb-on-teal`, with the ledge colour from `crumb-light-teal-ledge`.
+Never white text on teal. Never teal text on a light background.
+
+## Decisions and deviations
+
+1. **Dark-surface accents (mismatch with brief step 3, told to HQ).** The brief says `.band-cap .k`, `.cta-in h2 em`
+   and the footer link hover "follow the same rule" (--ink). All three sit on dark surfaces, where chocolate is
+   invisible. CTA em and footer hover become teal text (7.58 on chocolate). The band label becomes a teal fill with
+   chocolate text, because it sits over a photo whose contrast varies.
+2. **All text on --ink-3 moves to --ink-2.** #6B827C is 3.54 on the page and 4.11 on a white card, both under 4.5.
+   --ink-3 stays only on the scroll cue's outline and dot.
+3. **Eyebrow text moves from --hi to --ink.** It is 13px text and --hi is 3.07 on the new background. The small bar
+   in front of it stays --hi as a fill.
+4. **Organization logo PNG is the chocolate lockup on transparent** at 512x512, because Google requires a logo to look
+   right on white.
+5. **Favicon uses the full logo at 16, 32 and 48** as the brief and D331 say. At 16px it is not legible. Flagged for
+   Design: `icon/small-mark-24.svg` exists if they want it for the favicon only.
+6. **Hero map image shows the old cream style.** Flagged to HQ and left alone, as the brief says.
+7. **Dead CSS removed from globals.css** where it held retired colours: `.receipt-edge`, `@keyframes f-pulse`,
+   `.animated-border-gradient` with its `--angle` property and keyframes. None has a user.
+8. **Amber warning callout in admin/referrals stays.** It is Tailwind's amber as a warning state, not the brand.
+
+## Lanes
+
+To be filled in as units land.
