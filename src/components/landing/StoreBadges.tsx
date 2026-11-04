@@ -34,10 +34,10 @@
  * src/app/page.tsx, while Tailwind's generated utilities live inside
  * `@layer utilities` (src/app/globals.css's `@import "tailwindcss"`).
  * Unlayered CSS always wins over layered CSS regardless of selector
- * specificity, so landing.css's `.landing a{color:var(--gold-2)}` /
- * `.landing a:hover{color:var(--ink)}` silently overrode the plain
- * `text-white` utility on the homepage (Hero.tsx / CTA.tsx) - the label
- * rendered gold, and near-invisible ink-on-black on hover. `/u/[username]`
+ * specificity, so the blanket `.landing a{color:var(--ink);text-decoration:underline}` /
+ * `.landing a:hover{color:var(--ink-2)}` rules in landing.css silently overrode the plain
+ * `text-white` utility on the homepage (Hero.tsx / CTA.tsx) - the badge label rendered ink and
+ * underlined on the dark badge, and changed to ink-2 on hover. `/u/[username]`
  * (ProfileShareLanding.tsx) never imports landing.css so was never affected
  * - this was purely a homepage regression. The `!` modifier emits
  * `color:#fff!important`, which beats an unlayered non-`!important` rule
@@ -57,7 +57,7 @@
  *   important modifiers are now asserted by a jsdom test
  *   (StoreBadges.test.tsx) so silently dropping the `!` (a tidy-up edit or a
  *   Tailwind v3->v4 codemod) fails the suite instead of shipping the
- *   gold-on-black/near-invisible-hover homepage regression a second time.
+ *   ink-on-black, underlined badge label homepage regression a second time.
  * - F53-R3-2: the mobile breakpoint is now `max-[560px]:` (an arbitrary
  *   variant) instead of Tailwind's default `max-sm:` (640px), and
  *   `flex-[1_1_auto]` instead of `flex-1` (`flex:1 1 0%`) - both restored to

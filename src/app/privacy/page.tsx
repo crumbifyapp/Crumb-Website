@@ -390,7 +390,7 @@ export default function PrivacyPage() {
           Separately, clearly labelled &quot;Sponsored&quot; restaurant cards may appear
           in the App. These are not personalised; they are chosen by simple
           rotation from a campaign list rather than from your data, carry a
-          gold &quot;Sponsored&quot; label, and involve no per-user tracking. They appear
+          &quot;Sponsored&quot; label, and involve no per-user tracking. They appear
           for everyone, about half as often for Crumbify Premium members.
         </p>
       </section>
