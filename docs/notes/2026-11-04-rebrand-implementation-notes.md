@@ -92,6 +92,9 @@ fade also hides the baked-in "N" badge. Still overlapping at 360x640, unchanged 
 
 Manifesto width went from 18ch to 20ch, because the wider font left "go." alone on the last line.
 
+Design signed off round 2. Final edits: `.here2` blue dot removed with `HERE_POSITION` and `--blue`, and `.band-cap p` and
+`.footer-brand p` moved to `--disp`. Owner decision D343: the hero map is recoloured before merge. Design supplies the file.
+
 ## Vercel build failure: intermittent, cause unknown (read this on merge day)
 
 The git-triggered previews for 3d4b5d8 (about 16:30 UTC) and c7a1a73 (about 16:35) both failed on Vercel with
@@ -115,7 +118,7 @@ A failed production deploy leaves the old site serving, so it isn't an outage, b
 ## Known e2e failure, not from this branch
 
 `tests/e2e/mobile-responsive.spec.ts:86` looks for a `.store` class that main already removed on purpose (see the
-comment in `landing.css`). It fails on main's code too. Left alone, outside this job.
+comment in `landing.css`). Verified: run on a clean build of main at 5873224, it fails the same way. Left alone, outside this job.
 
 ## Not verified
 
@@ -127,6 +130,6 @@ comment in `landing.css`). It fails on main's code too. Left alone, outside this
 - Units A to E (tokens and landing CSS, admin, legal and share pages, logo and metadata, colour guard): Sonnet writers,
   because each brief covered many files or constraints.
 - Unit F (review fixes, about 5 small exact changes): Haiku writer.
-- Unit G (Design's changes, exact CSS and small component edits): Haiku writer.
+- Units G and H (Design's changes, exact CSS and small component edits): Haiku writer.
 - Review: one Sonnet reviewer, read-only. No blockers; 1 SHOULD and several notes, fixed in unit F.
 - Assets and docs: orchestrator (generated PNG and ICO files, markdown).
