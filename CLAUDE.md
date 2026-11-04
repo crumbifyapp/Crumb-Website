@@ -43,7 +43,7 @@ The landing is a 1:1 Next.js port of the approved design in `C:\Users\aliba\Down
 - `src/app/page.tsx` — server component composing the landing. Sections in order:
   `Header → Hero (live Leaflet map) → Manifesto → HowItWorks (#how) → FeedMarquee (#feed) → Band → TasteMatch (#discover) → Groups (#groups) → FoundingSection (#founding) → CTA → Footer`, plus the `ScrollFX` client island.
 - `src/app/landing.css` — the handoff CSS ported verbatim, scoped under `.landing`. Do NOT rewrite to Tailwind. `--ser` is intentionally the Helvetica stack (Instrument Serif deliberately unused).
-- `src/components/landing/` — `data.ts` (posts/spots/scoreColor/store SVGs), atoms (CookieMark, ScorePuck, StoreBadges), client islands: `Header` (solid-on-scroll + two-step burger drawer), `HeroMap` (Leaflet, locked, CARTO Voyager tiles), `ScrollFX` (Lenis lerp .09 + reveals + parallax), `FoundingSection` (Stripe founding flow, first-100 counter).
+- `src/components/landing/` — `data.ts` (posts/spots/scoreColor/store SVGs), atoms (CrumbifyLogo, ScorePuck, StoreBadges), client islands: `Header` (solid-on-scroll + two-step burger drawer), `HeroMap` (Leaflet, locked, CARTO Voyager tiles), `ScrollFX` (Lenis lerp .09 + reveals + parallax), `FoundingSection` (Stripe founding flow, first-100 counter).
 - `src/app/referral/route.ts` — `GET /referral?code=X`: upserts `{code, platform, ip_hash}` into Supabase `referral_clicks` (unique on `code,ip_hash`, `ignoreDuplicates: true`, so one row per unique visitor per code) then 302s to the store by user agent (envs `NEXT_PUBLIC_APP_STORE_URL` / `NEXT_PUBLIC_PLAY_STORE_URL`, fallback `/`). The client IP is read from `x-forwarded-for` / `x-real-ip`, hashed with sha256 + `REFERRAL_IP_SALT` (falls back to `SUPABASE_SERVICE_ROLE_KEY` if unset), and never stored or logged in raw form; logging is skipped entirely if no salt is configured. UGC-influencer tracking links.
 - `src/app/admin/referrals/` — unique-visitor clicks-per-code dashboard (summary totals + per-code table with platform split, last 7 days, first/last click, share URL) behind the existing magic-link admin gate (`requireAdmin`, `ADMIN_EMAILS`). Linked from the main `/admin` header and a `Referrals` summary section there.
 - **`ADMIN_EMAILS` is REQUIRED, not optional.** `src/lib/admin/auth.ts` has no hardcoded fallback allowlist (this repo is public - a hardcoded admin email is a phishing target). If `ADMIN_EMAILS` is unset or empty, `requireAdmin()` fails closed and admin sign-in is disabled for everyone. Set it as a comma-separated, case-insensitive list: `ADMIN_EMAILS=admin@crumbify.co.uk,ali@crumbify.co.uk` in Vercel (production) and in `.env.local` (local dev).
@@ -54,11 +54,17 @@ The landing is a 1:1 Next.js port of the approved design in `C:\Users\aliba\Down
 - `src/app/api/` — `waitlist/founding/` (first-100 counter), `stripe/webhook/`, `admin/session/`. (Waitlist signup, `/ref`, `/invite` were deleted 2026-07-18; `/ref` + `/invite` 301 to `/` via `next.config.ts`.)
 - `stripe/webhook/` also handles `charge.refunded` (only on a full refund) and `payment_intent.canceled` by DELETING the matching `waitlist` row keyed on `stripe_payment_id`, never an UPDATE: the app repo's `supabase/migrations/009_waitlist_lockdown.sql` puts a CHECK constraint on `tier` (only `free`/`founding_member`) and a `trg_prevent_tier_downgrade` trigger that silently reverts any UPDATE demoting `founding_member` to `free`.
 
-## Brand / theme (current — cream editorial, SITE_HANDOFF)
+## Brand / theme (rebrand 1.4.2: teal, chocolate, deep green; D321, D331, D334)
 
-- Cream canvas: bg `#F4ECE1`, alt `#EFE5D8`, card `#FFFDF9`, ink `#1A1208`, gold `#E6C39B`/`#C9A077`, terracotta accent `#D8663F` (eyebrows only). Dark ink surfaces for footer/CTA.
+- Colours live ONLY in two token files: `src/app/globals.css` (`--color-crumb-*`, dark surfaces plus `crumb-light-*`) and `src/app/landing.css` `:root`. `src/__tests__/styling/no-colour-literal-guard.test.ts` fails on a colour literal anywhere else and on any retired brand colour. Palette source: `../design/outbox/2026-10-29-rebrand/PALETTE-MAP.md`.
+- Light (landing, not-found, share pages): bg `#E6F0EE`, alt `#D9E8E4`, card `#FFFFFF`, ink `#27180E`, soft ink `#4A3A30`, muted `#6B827C` (icons and hints only, never text), line `#CFE0DC`.
+- Dark (legal, support, admin, success): bg `#12291F`, alt `#0C1D16`, card `#1F4634`, raised card `#285443`, text `#FFFFFF`, soft text `#C2D6CF`, muted `#8AA69C` (page background only, 4.0 on a card), line `#2C5745`.
+- Teal `#79B8AD` is the brand fill, with text `#27180E` on it. Never white text on teal (2.26:1). Never teal text on a light background. Teal text is fine on dark surfaces.
+- Gold is for Premium only and the website has no Premium surface, so gold is not used on this site at all.
+- `--hi` `#D8663F` is only 3.07 on the light background: fills and large display text only.
+- Logo: full lockup at every size (D331) via `CrumbifyLogo` (inline SVG, `currentColor`: chocolate on light, white on dark). `public/images/crumbify-logo.png` is the PNG for structured data.
 - Tagline: "Every bite tells a story."
-- Gold is never standalone body-text colour. Score pucks use the red→yellow→green `scoreColor()` ramp.
+- Score pucks use the red→yellow→green `scoreColor()` ramp.
 
 ## Email policy
 
@@ -71,7 +77,6 @@ The landing is a 1:1 Next.js port of the approved design in `C:\Users\aliba\Down
 
 - Wire `NEXT_PUBLIC_STRIPE_FOUNDING_MEMBER_LINK` env in Vercel for the founding-member checkout button (falls back to `/#founding` if unset).
 - Wire `NEXT_PUBLIC_APP_STORE_URL` + `NEXT_PUBLIC_PLAY_STORE_URL` in Vercel once the store listings exist (store badges fall back to `#`, referral redirect to `/`).
-- OG share image (1200x630) + favicon set still to be produced (see SITE_HANDOFF/05-ASSETS-SEO.md).
 - Self-host fonts as woff2 if Lighthouse flags the Google Fonts request.
 - Monthly Wrapped may be named factually as a Crumbify Premium perk (it is live in the app; landing FAQ, FAQPage JSON-LD, /support, llms.txt); do not build a Wrapped feature section. Owner decision D310, 29 Oct 2026 (replaces the old "Wrapped is intentionally NOT featured" rule).
 
