@@ -5,6 +5,10 @@ export function Hero() {
   return (
     <section className="hero">
       <HeroMap />
+      <p className="map-credit">
+        &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy;{" "}
+        <a href="https://carto.com/attribution/">CARTO</a>
+      </p>
       <div className="hero-mask" />
       <div className="hero-c">
         <div className="in">

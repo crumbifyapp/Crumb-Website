@@ -125,16 +125,36 @@ test.describe("Homepage sections", () => {
     await expect(home.ctaIn).toContainText("one tap away");
   });
 
-  test("footer renders with CARTO attribution", async ({ page }) => {
+  test("footer renders the company line and no map credit", async ({
+    page,
+  }) => {
     const home = new HomePage(page);
     await home.goto();
 
     await home.footer.scrollIntoViewIfNeeded();
     await expect(home.footer).toBeVisible();
-    await expect(home.footer).toContainText(
-      /Map data.*OpenStreetMap contributors, tiles.*CARTO/
-    );
+    await expect(home.footer).not.toContainText("CARTO");
     await expect(home.footer).toContainText("Crumbify LTD");
+  });
+
+  test("map credit is on the hero, visible, with both links", async ({
+    page,
+  }) => {
+    const home = new HomePage(page);
+    await home.goto();
+
+    const credit = page.locator(".hero .map-credit");
+    await expect(credit).toBeVisible();
+    await expect(credit).toHaveText("© OpenStreetMap contributors, © CARTO");
+    await expect(credit.getByRole("link", { name: "OpenStreetMap" })).toHaveAttribute(
+      "href",
+      "https://www.openstreetmap.org/copyright",
+    );
+    await expect(credit.getByRole("link", { name: "CARTO" })).toHaveAttribute(
+      "href",
+      "https://carto.com/attribution/",
+    );
+    await expect(page.locator("#lmap .map-credit")).toHaveCount(0);
   });
 
   test("sections render in the expected top-to-bottom order", async ({
