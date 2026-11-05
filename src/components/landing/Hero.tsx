@@ -6,8 +6,9 @@ export function Hero() {
     <section className="hero">
       <HeroMap />
       <p className="map-credit">
-        &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy;{" "}
-        <a href="https://carto.com/attribution/">CARTO</a>
+        <a href="https://openfreemap.org">OpenFreeMap</a>{" "}
+        <a href="https://www.openmaptiles.org/">&copy; OpenMapTiles</a> Data from{" "}
+        <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
       </p>
       <div className="hero-mask" />
       <div className="hero-c">
