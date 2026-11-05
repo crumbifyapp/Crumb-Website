@@ -137,7 +137,7 @@ test.describe("Homepage sections", () => {
     await expect(home.footer).toContainText("Crumbify LTD");
   });
 
-  test("map credit is on the hero, visible, with both links", async ({
+  test("map credit is on the hero, visible, with its three links", async ({
     page,
   }) => {
     const home = new HomePage(page);
@@ -145,15 +145,20 @@ test.describe("Homepage sections", () => {
 
     const credit = page.locator(".hero .map-credit");
     await expect(credit).toBeVisible();
-    await expect(credit).toHaveText("© OpenStreetMap contributors, © CARTO");
-    await expect(credit.getByRole("link", { name: "OpenStreetMap" })).toHaveAttribute(
+    await expect(credit).toHaveText("OpenFreeMap © OpenMapTiles Data from OpenStreetMap");
+    await expect(credit.getByRole("link", { name: "OpenFreeMap", exact: true })).toHaveAttribute(
+      "href",
+      "https://openfreemap.org",
+    );
+    await expect(credit.getByRole("link", { name: "© OpenMapTiles", exact: true })).toHaveAttribute(
+      "href",
+      "https://www.openmaptiles.org/",
+    );
+    await expect(credit.getByRole("link", { name: "OpenStreetMap", exact: true })).toHaveAttribute(
       "href",
       "https://www.openstreetmap.org/copyright",
     );
-    await expect(credit.getByRole("link", { name: "CARTO" })).toHaveAttribute(
-      "href",
-      "https://carto.com/attribution/",
-    );
+    await expect(credit).not.toContainText("CARTO");
     await expect(page.locator("#lmap .map-credit")).toHaveCount(0);
   });
 
