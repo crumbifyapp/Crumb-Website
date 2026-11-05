@@ -41,13 +41,18 @@ describe("Hero", () => {
     const { container } = render(<Hero />);
     const credit = container.querySelector("p.map-credit");
     expect(credit).not.toBeNull();
-    expect(credit?.textContent).toBe("© OpenStreetMap contributors, © CARTO");
+    expect(credit?.textContent).toBe("OpenFreeMap © OpenMapTiles Data from OpenStreetMap");
+    expect(credit?.querySelector('a[href="https://openfreemap.org"]')?.textContent).toBe(
+      "OpenFreeMap",
+    );
+    expect(
+      credit?.querySelector('a[href="https://www.openmaptiles.org/"]')?.textContent,
+    ).toBe("© OpenMapTiles");
     expect(
       credit?.querySelector('a[href="https://www.openstreetmap.org/copyright"]')?.textContent,
     ).toBe("OpenStreetMap");
-    expect(credit?.querySelector('a[href="https://carto.com/attribution/"]')?.textContent).toBe(
-      "CARTO",
-    );
+    expect(credit?.querySelectorAll("a")).toHaveLength(3);
     expect(credit?.closest('[aria-hidden="true"]')).toBeNull();
+    expect(credit?.textContent).not.toContain("CARTO");
   });
 });
