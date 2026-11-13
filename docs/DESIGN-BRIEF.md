@@ -58,7 +58,7 @@ Anything works as long as it could not be mistaken for a template SaaS page.
 4. Taste-matched discovery (the map/scroll + taste match %)
 5. Groups (deciding where to eat together)
 6. The London angle ("Starting in London" is a feature, not a limitation - neighbourhood names are welcome: Soho, Shoreditch, Peckham, Brixton, Camden)
-7. Footer: Privacy, Terms, Support, Delete Account links, X @crumbifyco, contact@crumbify.co.uk, © Crumbify LTD
+7. Footer: Privacy, Terms, Support, Delete Account links, X @crumbifyco, support@crumbify.co.uk, © Crumbify LTD
 
 ### Mock data pack (use this, keep it London-real)
 
