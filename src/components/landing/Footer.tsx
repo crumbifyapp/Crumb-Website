@@ -21,7 +21,7 @@ export function Footer() {
           <div className="fcol">
             <h4>Company</h4>
             <a href="/support">Support</a>
-            <a href="mailto:contact@crumbify.co.uk">contact@crumbify.co.uk</a>
+            <a href="mailto:support@crumbify.co.uk">support@crumbify.co.uk</a>
             <a href="https://x.com/crumbifyco">X @crumbifyco</a>
           </div>
           <div className="fcol">

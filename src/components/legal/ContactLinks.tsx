@@ -70,7 +70,7 @@ export function ContactLinks() {
       </a>
 
       <a
-        href="mailto:contact@crumbify.co.uk"
+        href="mailto:support@crumbify.co.uk"
         style={contactLinkStyle}
         onMouseEnter={(e) => {
           (e.currentTarget as HTMLAnchorElement).style.background = "var(--color-crumb-teal-tint)";
@@ -96,7 +96,7 @@ export function ContactLinks() {
         </div>
         <div>
           <p style={contactLabelStyle}>Sponsors and everything else</p>
-          <p style={contactSubStyle}>contact@crumbify.co.uk</p>
+          <p style={contactSubStyle}>support@crumbify.co.uk</p>
         </div>
       </a>
 
