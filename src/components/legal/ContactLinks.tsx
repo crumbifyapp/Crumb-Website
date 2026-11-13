@@ -64,38 +64,8 @@ export function ContactLinks() {
           </svg>
         </div>
         <div>
-          <p style={contactLabelStyle}>Help and account support</p>
-          <p style={contactSubStyle}>support@crumbify.co.uk</p>
-        </div>
-      </a>
-
-      <a
-        href="mailto:support@crumbify.co.uk"
-        style={contactLinkStyle}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLAnchorElement).style.background = "var(--color-crumb-teal-tint)";
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
-        }}
-      >
-        <div style={contactIconWrapStyle}>
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="var(--color-crumb-teal)"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <rect width="20" height="16" x="2" y="4" rx="2" />
-            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-          </svg>
-        </div>
-        <div>
-          <p style={contactLabelStyle}>Sponsors and everything else</p>
+          <p style={contactLabelStyle}>Email us</p>
+          <p style={contactSubStyle}>Help, account, sponsors and everything else</p>
           <p style={contactSubStyle}>support@crumbify.co.uk</p>
         </div>
       </a>
