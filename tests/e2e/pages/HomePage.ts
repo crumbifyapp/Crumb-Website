@@ -112,7 +112,7 @@ export class HomePage {
     this.footerPrivacyLink = this.footer.getByRole("link", { name: "Privacy" });
     this.footerTermsLink = this.footer.getByRole("link", { name: "Terms" });
     this.footerContactLink = this.footer.getByRole("link", {
-      name: /contact@crumbify\.co\.uk/i,
+      name: /support@crumbify\.co\.uk/i,
     });
     this.footerDeleteAccountLink = this.footer.getByRole("link", {
       name: "Delete account",

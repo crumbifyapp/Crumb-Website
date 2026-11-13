@@ -69,10 +69,10 @@ The landing is a 1:1 Next.js port of the approved design in `C:\Users\aliba\Down
 
 ## Email policy
 
-- User / account / legal / help issues → `support@crumbify.co.uk`.
-- Sponsor / partnership / everything else → `contact@crumbify.co.uk`.
-- `admin@crumbify.co.uk` is NOT used anywhere on the site.
-- Store review (app store only): `appreview@crumbify.co.uk`.
+- Every public contact address on the site is `support@crumbify.co.uk`: the single universal address for user, account, legal, help, sponsor and everything else (owner decisions D421 and D422, 13 Nov 2026).
+- `contact@crumbify.co.uk` and `admin@crumbify.co.uk` are retired. They must not appear anywhere on the site.
+- `appreview@crumbify.co.uk` is the App Review demo account's sign-in email (a login for store reviewers, NOT a contact address). It is the only other `@crumbify.co.uk` address allowed in site source.
+- The guard `src/__tests__/security/public-contact-address-guard.test.ts` fails on any `<name>@crumbify.co.uk` address in site source other than `support@` and `appreview@`.
 
 ## Known follow-ups
 
@@ -102,7 +102,7 @@ are non-personalised; deletion is immediate and attempts Apple credential revoca
 Crumbify LTD (no. 17288992), min age 16, no DPO, trademark application UK00004426579 (PENDING -
 no (R) symbol until registered). Do not edit these pages from memory - re-verify against app code.
 
-Locked external strings: contact `contact@crumbify.co.uk`, store review `appreview@crumbify.co.uk`, account-delete `admin@crumbify.co.uk`, X `@crumbifyco`, delete URL `https://crumbify.co.uk/delete-account`.
+Locked external strings: contact `support@crumbify.co.uk` (single universal address, D421/D422), store review login `appreview@crumbify.co.uk` (demo login, not a contact address), account-delete `support@crumbify.co.uk`, X `@crumbifyco`, delete URL `https://crumbify.co.uk/delete-account`.
 
 ## Security guards (automated, run on every `npm test`)
 

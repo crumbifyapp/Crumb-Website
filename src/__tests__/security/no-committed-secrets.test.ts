@@ -202,8 +202,8 @@ describe("security: no committed secrets", () => {
  *
  * Deliberately narrower than the general secret scan above: legal/support/
  * footer pages under src/app (outside these three roots) legitimately show
- * contact@crumbify.co.uk, support@crumbify.co.uk, admin@crumbify.co.uk
- * (account-deletion instructions) and appreview@crumbify.co.uk, and must
+ * support@crumbify.co.uk (the single public contact address, account deletion
+ * included) and appreview@crumbify.co.uk (the App Review demo login), and must
  * keep passing.
  */
 describe("security: no hardcoded crumbify.co.uk emails in lib/admin/api", () => {
